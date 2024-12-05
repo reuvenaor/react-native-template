@@ -1,23 +1,37 @@
-import {persistStore} from 'redux-persist';
-import persistedReducer from './reducers';
-import {createStore, StoreEnhancer, applyMiddleware, Middleware} from 'redux';
-import {logger} from '../utils/logger';
+import {
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
+import {persistedCounterReducer} from './reducers';
+import {storeEnhancer} from './middlewares/logMiddleware';
 
-// declare function applyMiddleware<Ext1, S>(middleware1: Middleware<Ext1, S, any>): StoreEnhancer<{
-//     dispatch: Ext1;
-// }>;
-const middleware1: Middleware = store => {
-  return next => action => {
-    logger.info('action', action);
-    let result = next(action);
-    const state = store.getState();
-    logger.info('state', state);
-    return result;
-  };
-};
-
-const storeEnhancer: StoreEnhancer = applyMiddleware(middleware1);
-
-export const store = createStore(persistedReducer, storeEnhancer);
+export const store = configureStore({
+  reducer: {
+    counter: persistedCounterReducer,
+  },
+  // If using Redux-Persist, you should specifically ignore all the action types it dispatches:
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+  enhancers: getDefaultEnhancers => getDefaultEnhancers().concat(storeEnhancer),
+});
 
 export const persistor = persistStore(store);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;

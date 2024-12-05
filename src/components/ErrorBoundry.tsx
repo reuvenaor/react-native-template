@@ -1,5 +1,6 @@
 import React, {PropsWithChildren, ReactNode} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, DevSettings, Button} from 'react-native';
+import {logger} from '../utils/logger';
 
 type ErrorBoundaryProps = PropsWithChildren<{fallback?: ReactNode}>;
 
@@ -19,14 +20,8 @@ class ErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: any, info: any) {
-    console.log('componentDidCatch error', error);
-    console.log('componentDidCatch info', info);
-    // Example "componentStack":
-    //   in ComponentThatThrows (created by App)
-    //   in ErrorBoundary (created by App)
-    //   in div (created by App)
-    //   in App
-    // logErrorToMyService(error, info.componentStack);
+    logger.error('error', error);
+    logger.info('info', info);
   }
 
   render() {
@@ -35,7 +30,11 @@ class ErrorBoundary extends React.Component<
       return (
         this.props.fallback || (
           <View>
-            <Text>Something went wrong.</Text>
+            <Text>Something went wrong. Check log </Text>
+            <Button
+              title="Reload"
+              onPress={() => DevSettings.reload('ErrorBoundary')}
+            />
           </View>
         )
       );

@@ -6,12 +6,13 @@
  */
 
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView} from 'react-native';
+import {CounterRedux} from '../components/CounterRedux';
 
 function Main(): React.JSX.Element {
   return (
     <SafeAreaView>
-      <Text>{'Main'}</Text>
+      <CounterRedux />
     </SafeAreaView>
   );
 }
