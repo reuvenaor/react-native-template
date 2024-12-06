@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {useAppDispatch, useAppSelector} from '../hooks/redux';
-import {AsyncButton} from './AsyncButton';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { AsyncButton } from './AsyncButton';
 import {
   decrement,
   increment,
@@ -50,7 +50,7 @@ export function CounterRedux() {
           <TouchableOpacity
             style={styles.button}
             onPress={() =>
-              dispatch(incrementByAmount({amount: Number(incrementAmount)}))
+              dispatch(incrementByAmount({ amount: Number(incrementAmount) }))
             }>
             <Text style={styles.buttonText}>Add Amount</Text>
           </TouchableOpacity>

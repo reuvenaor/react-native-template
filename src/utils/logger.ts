@@ -22,4 +22,4 @@ const logger = pino({
   },
 });
 
-export {logger};
+export { logger };

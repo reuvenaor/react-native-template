@@ -7,14 +7,15 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import {configureStore, ThunkAction, PayloadAction} from '@reduxjs/toolkit';
-import {persistedCounterReducer} from './reducers';
-import {storeEnhancer} from './middlewares/logMiddleware';
+import { configureStore, ThunkAction, PayloadAction } from '@reduxjs/toolkit';
+import { persistedCounterReducer } from './reducers';
+import { storeEnhancer } from './middlewares/logMiddleware';
 import {
   SchemasMap,
   validationMiddlewareCreator,
 } from './middlewares/validationMiddleware';
 import CounterSchema from './schemas/counterSchema.ts';
+import { CounterState } from './reducers/counterReducer.ts';
 
 const schemas: SchemasMap = {
   'counter/incrementByAmount': CounterSchema,
@@ -39,6 +40,10 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+export type NewRootState = {
+  counter: CounterState;
+};
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

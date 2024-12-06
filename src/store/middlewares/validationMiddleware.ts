@@ -1,6 +1,6 @@
-import {applyMiddleware, Middleware, StoreEnhancer} from '@reduxjs/toolkit';
-import {JsonSchema, validate} from 'tv4';
-import {logger} from '../../utils/logger';
+import { applyMiddleware, Middleware, StoreEnhancer } from '@reduxjs/toolkit';
+import { JsonSchema, validate } from 'tv4';
+import { logger } from '../../utils/logger';
 
 export type SchemasMap = Record<string, JsonSchema>;
 
