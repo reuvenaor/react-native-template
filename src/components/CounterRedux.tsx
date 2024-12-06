@@ -50,7 +50,7 @@ export function CounterRedux() {
           <TouchableOpacity
             style={styles.button}
             onPress={() =>
-              dispatch(incrementByAmount(Number(incrementAmount) || 0))
+              dispatch(incrementByAmount({amount: Number(incrementAmount)}))
             }>
             <Text style={styles.buttonText}>Add Amount</Text>
           </TouchableOpacity>

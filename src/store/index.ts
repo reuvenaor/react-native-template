@@ -7,9 +7,21 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
+import {configureStore, ThunkAction, PayloadAction} from '@reduxjs/toolkit';
 import {persistedCounterReducer} from './reducers';
 import {storeEnhancer} from './middlewares/logMiddleware';
+import {
+  SchemasMap,
+  validationMiddlewareCreator,
+} from './middlewares/validationMiddleware';
+import CounterSchema from './schemas/counterSchema.ts';
+
+const schemas: SchemasMap = {
+  'counter/incrementByAmount': CounterSchema,
+  'counter/increment': {},
+};
+
+const validationEnhancer = validationMiddlewareCreator(schemas);
 
 export const store = configureStore({
   reducer: {
@@ -22,7 +34,8 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-  enhancers: getDefaultEnhancers => getDefaultEnhancers().concat(storeEnhancer),
+  enhancers: getDefaultEnhancers =>
+    getDefaultEnhancers().concat([storeEnhancer, validationEnhancer]),
 });
 
 export const persistor = persistStore(store);
@@ -33,5 +46,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
   unknown,
-  Action<string>
+  PayloadAction<string>
 >;

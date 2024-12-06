@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {fetchCount} from '../../mocks/counterAPI';
 import {RootState} from '..';
+import {IncrementByAmountPayload} from './types';
 
 export interface CounterState {
   value: number;
@@ -41,8 +42,11 @@ export const counterSlice = createSlice({
       state.value -= 1;
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    incrementByAmount: (
+      state,
+      action: PayloadAction<IncrementByAmountPayload>,
+    ) => {
+      state.value += action.payload.amount;
     },
   },
   extraReducers: builder => {
