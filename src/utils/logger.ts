@@ -6,7 +6,7 @@ const logger = pino({
     trace: 15,
     fatal: 6,
     error: 5,
-    warn: 4,
+    warn: 30,
     info: 20,
   },
   timestamp: pino.stdTimeFunctions.isoTime,
@@ -22,4 +22,4 @@ const logger = pino({
   },
 });
 
-export {logger};
+export { logger };

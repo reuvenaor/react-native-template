@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {persistReducer} from 'redux-persist';
+import { persistReducer } from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
-import {counterReducer, CounterState} from './counterReducer';
-import {AnyAction} from '@reduxjs/toolkit';
+import { counterReducer, CounterState } from './counterReducer';
+import { AnyAction } from '@reduxjs/toolkit';
 
 const rootPersistConfig = {
   key: 'root',
@@ -15,4 +15,4 @@ const persistedCounterReducer = persistReducer<CounterState, AnyAction>(
   counterReducer,
 );
 
-export {persistedCounterReducer};
+export { persistedCounterReducer };

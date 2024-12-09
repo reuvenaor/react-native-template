@@ -6,8 +6,8 @@
  */
 
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import {CounterRedux} from '../components/CounterRedux';
+import { SafeAreaView } from 'react-native';
+import { CounterRedux } from '../components/CounterRedux';
 
 function Main(): React.JSX.Element {
   return (

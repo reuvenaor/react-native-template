@@ -1,8 +1,30 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
+# Adding Schema for validationMiddleware:
+
+Where IncrementByAmountPayload is the declared type (interface) somewhere in the app code. schema.json is the output file.
+
+```bash
+typescript-json-schema tsconfig.json IncrementByAmountPayload --out schema.json
+```
+
+You can use the output json file OR copy the output file content and export it in new ts file:
+
+```typescript
+export default {
+  $schema: 'http://json-schema.org/draft-07/schema#',
+  properties: {
+    amount: {
+      type: 'number',
+    },
+  },
+  type: 'object',
+};
+```
+
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+> **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
 ## Step 1: Start the Metro Server
 

@@ -1,6 +1,7 @@
-import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {fetchCount} from '../../mocks/counterAPI';
-import {RootState} from '..';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { fetchCount } from '../../mocks/counterAPI';
+import { RootState } from '..';
+import { IncrementByAmountPayload } from './types';
 
 export interface CounterState {
   value: number;
@@ -19,9 +20,9 @@ const initialState: CounterState = {
 export const incrementAsync = createAsyncThunk<
   number,
   number,
-  {state: {counter: CounterState}}
->('counter/fetchCount', async (amount: number, {getState}) => {
-  const {value} = getState().counter;
+  { state: { counter: CounterState } }
+>('counter/fetchCount', async (amount: number, { getState }) => {
+  const { value } = getState().counter;
   const response = await fetchCount(value, amount);
   return response.data;
 });
@@ -41,8 +42,11 @@ export const counterSlice = createSlice({
       state.value -= 1;
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    incrementByAmount: (
+      state,
+      action: PayloadAction<IncrementByAmountPayload>,
+    ) => {
+      state.value += action.payload.amount;
     },
   },
   extraReducers: builder => {
@@ -57,7 +61,7 @@ export const counterSlice = createSlice({
   },
 });
 
-export const {increment, decrement, incrementByAmount} = counterSlice.actions;
+export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

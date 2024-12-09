@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {Provider} from 'react-redux';
-import {persistor, store} from './src/store';
-import {PersistGate} from 'redux-persist/lib/integration/react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+import { persistor, store } from './src/store';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ErrorBoundary from './src/components/ErrorBoundry';
 import Main from './src/screens/Main';
 
