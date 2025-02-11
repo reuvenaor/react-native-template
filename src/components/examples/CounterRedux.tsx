@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { AsyncButton } from './AsyncButton';
 import {
   decrement,
@@ -14,7 +14,7 @@ import {
   incrementAsync,
   incrementByAmount,
   selectCount,
-} from '../store/reducers/counterReducer';
+} from '../../store/reducers/counterReducer';
 
 export function CounterRedux() {
   const [incrementAmount, setIncrementAmount] = useState('2');
