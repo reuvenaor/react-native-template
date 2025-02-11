@@ -1,21 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Button, StyleSheet, Text } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
-import {
-  SettingsScreenName,
-  SettingsStackParamList,
-} from '../types/navigation';
+import { BottomTabParamList, TabsName } from '../types/navigation';
 import AppSafeAreaView from '../components/hocs/safe-area-view';
 
-function SettingsScreen({}: {
-  navigation: NavigationProp<
-    SettingsStackParamList,
-    SettingsScreenName.Settings
-  >;
+function SettingsScreen({
+  navigation,
+}: {
+  navigation: NavigationProp<BottomTabParamList, TabsName.ExamplesList>;
 }) {
   return (
     <AppSafeAreaView style={styles.con}>
       <Text style={styles.text}>Settings screen</Text>
+      <Button
+        title="Go to List Screen"
+        onPress={() => navigation.navigate(TabsName.ExamplesList)}
+      />
     </AppSafeAreaView>
   );
 }

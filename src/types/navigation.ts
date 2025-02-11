@@ -17,11 +17,11 @@ export type ExamplesListStackParamList = {
 };
 
 export enum TabsName {
-  SettingsTab = 'SettingsTab',
-  ExamplesList = 'ExamplesList',
+  Settings = 'Settings Tab',
+  ExamplesList = 'Examples List',
 }
 
 export type BottomTabParamList = {
   [TabsName.ExamplesList]: undefined;
-  [TabsName.SettingsTab]: undefined;
+  [TabsName.Settings]: undefined;
 };
