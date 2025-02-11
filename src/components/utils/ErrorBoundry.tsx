@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, ReactNode } from 'react';
 import { View, Text, DevSettings, Button } from 'react-native';
-import { logger } from '../utils/logger';
+import { logger } from '../../utils/logger';
 
 type ErrorBoundaryProps = PropsWithChildren<{ fallback?: ReactNode }>;
 
