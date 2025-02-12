@@ -10,7 +10,8 @@ const ExamplesListStack = createNativeStackNavigator<SettingsStackParamList>();
 
 function SettingsTab() {
   return (
-    <ExamplesListStack.Navigator screenOptions={{ headerShown: false }}>
+    <ExamplesListStack.Navigator
+      screenOptions={{ headerShown: false, orientation: 'portrait' }}>
       <ExamplesListStack.Screen
         name={SettingsScreenName.Settings}
         component={SettingsScreen}

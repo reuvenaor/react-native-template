@@ -6,15 +6,15 @@
  */
 
 import React from 'react';
-import { CounterRedux } from '../components/examples/counter-redux';
 import AppSafeAreaView from '../components/hocs/safe-area-view';
+import SkiaAccelerometer from '../components/examples/skia-accelerometer';
 
-function ReduxExampleScreen(): React.JSX.Element {
+function SkiaAccelScreen(): React.JSX.Element {
   return (
     <AppSafeAreaView>
-      <CounterRedux />
+      <SkiaAccelerometer />
     </AppSafeAreaView>
   );
 }
 
-export default ReduxExampleScreen;
+export default SkiaAccelScreen;
