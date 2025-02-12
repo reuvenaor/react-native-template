@@ -78,24 +78,6 @@ npm run ios
 yarn ios
 ```
 
-## Adding Schema for validationMiddleware:
+## License
 
-Where IncrementByAmountPayload is the declared type (interface) somewhere in the app code. schema.json is the output file.
-
-```bash
-typescript-json-schema tsconfig.json IncrementByAmountPayload --out schema.json
-```
-
-You can use the output json file OR copy the output file content and export it in new ts file:
-
-```typescript
-export default {
-  $schema: 'http://json-schema.org/draft-07/schema#',
-  properties: {
-    amount: {
-      type: 'number',
-    },
-  },
-  type: 'object',
-};
-```
+MIT
