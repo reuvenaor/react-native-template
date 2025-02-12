@@ -5,6 +5,7 @@ export enum SettingsScreenName {
 export enum ExamplesListScreenName {
   ExamplesList = 'Examples List',
   ReduxExample = 'Redux Example',
+  SkiaAccelerometer = 'Skia Accelerometer',
 }
 
 export type SettingsStackParamList = {
@@ -14,11 +15,12 @@ export type SettingsStackParamList = {
 export type ExamplesListStackParamList = {
   [ExamplesListScreenName.ExamplesList]: undefined;
   [ExamplesListScreenName.ReduxExample]: undefined;
+  [ExamplesListScreenName.SkiaAccelerometer]: undefined;
 };
 
 export enum TabsName {
   Settings = 'Settings Tab',
-  ExamplesList = 'Examples List',
+  ExamplesList = 'Examples List Tab',
 }
 
 export type BottomTabParamList = {
