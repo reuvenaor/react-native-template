@@ -3,8 +3,8 @@ export enum SettingsScreenName {
 }
 
 export enum ExamplesListScreenName {
-  ExamplesList = 'ExamplesList',
-  ReduxExample = 'ReduxExample',
+  ExamplesList = 'Examples List',
+  ReduxExample = 'Redux Example',
 }
 
 export type SettingsStackParamList = {

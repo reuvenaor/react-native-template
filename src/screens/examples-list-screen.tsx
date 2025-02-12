@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import {
   SettingsScreenName,
   SettingsStackParamList,
 } from '../types/navigation';
 import AppSafeAreaView from '../components/hocs/safe-area-view';
+import FlashListExample from '../components/examples/flash-list';
 
 function ExamplesListScreen({}: {
   navigation: NavigationProp<
@@ -15,7 +16,7 @@ function ExamplesListScreen({}: {
 }) {
   return (
     <AppSafeAreaView style={styles.con}>
-      <Text style={styles.text}>Examples List Screen</Text>
+      <FlashListExample />
     </AppSafeAreaView>
   );
 }
