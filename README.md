@@ -1,11 +1,11 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
+[![react](https://img.shields.io/badge/react-18.3.1-blue)](https://reactjs.org/)
+[![react-native](https://img.shields.io/badge/react--native-0.76.3-blue)](https://reactnative.dev/)
+
 # React Native Template with Redux Persist, Redux validation middleware
 
 This template implements the following common libraries with examples:
-
-[![react](https://img.shields.io/badge/react-18.3.1-blue)](https://reactjs.org/)
-[![react-native](https://img.shields.io/badge/react--native-0.76.3-blue)](https://reactnative.dev/)
 
 Navigation:
 
