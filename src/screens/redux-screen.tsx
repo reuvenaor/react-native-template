@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { CounterRedux } from '../components/examples/CounterRedux';
+import { CounterRedux } from '../components/examples/counter-redux';
 import AppSafeAreaView from '../components/hocs/safe-area-view';
 
 function ReduxExampleScreen(): React.JSX.Element {

@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { AsyncButton } from './AsyncButton';
+import { AsyncButton } from './async-button';
 import {
   decrement,
   increment,
