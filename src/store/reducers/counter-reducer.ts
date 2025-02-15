@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchCount } from '../../mocks/counterAPI';
+import { fetchCount } from '../../mocks/counter-api';
 import { RootState } from '..';
 import { IncrementByAmountPayload } from './types';
 

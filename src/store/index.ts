@@ -9,13 +9,13 @@ import {
 } from 'redux-persist';
 import { configureStore, ThunkAction, PayloadAction } from '@reduxjs/toolkit';
 import { persistedCounterReducer } from './reducers';
-import { storeEnhancer } from './middlewares/logMiddleware';
+import { storeEnhancer } from './middlewares/log-middleware.ts';
 import {
   SchemasMap,
   validationMiddlewareCreator,
-} from './middlewares/validationMiddleware';
+} from './middlewares/validation-middleware.ts';
 import CounterSchema from './schemas/counterSchema.ts';
-import { CounterState } from './reducers/counterReducer.ts';
+import { CounterState } from './reducers/counter-reducer.ts';
 
 const schemas: SchemasMap = {
   'counter/incrementByAmount': CounterSchema,
