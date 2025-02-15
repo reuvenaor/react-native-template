@@ -14,7 +14,7 @@ import {
   incrementAsync,
   incrementByAmount,
   selectCount,
-} from '../../store/reducers/counterReducer';
+} from '../../store/reducers/counter-reducer';
 
 export function CounterRedux() {
   const [incrementAmount, setIncrementAmount] = useState('2');

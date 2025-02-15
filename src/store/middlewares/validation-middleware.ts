@@ -4,10 +4,6 @@ import { logger } from '../../utils/logger';
 
 export type SchemasMap = Record<string, JsonSchema>;
 
-// declare function applyMiddleware<Ext1, S>(middleware1: Middleware<Ext1, S, any>): StoreEnhancer<{
-//     dispatch: Ext1;
-// }>;
-
 export const validationMiddlewareCreator = (
   schemas: SchemasMap,
 ): StoreEnhancer => {
