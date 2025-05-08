@@ -1,4 +1,10 @@
 {
   "name": "ExApp",
-  "displayName": "ExApp"
+  "displayName": "ExApp",
+  "android": {
+    "package": "com.anonymous.exapp"
+  },
+  "ios": {
+    "bundleIdentifier": "com.anonymous.exapp"
+  }
 }
