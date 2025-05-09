@@ -4,12 +4,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ExamplesListTab from './examples-list-tab';
 import { BottomTabParamList, TabsName } from '../types/navigation';
 import SettingsTab from './settings-tab';
-import Icon from '@react-native-vector-icons/ant-design';
+import Icon from '@expo/vector-icons/AntDesign';
 
 const getTabBarIcon =
   (iconName: React.ComponentProps<typeof Icon>['name']) =>
-  ({ color, size }: { color: string; size: number }) =>
-    <Icon name={iconName} color={color} size={size} />;
+    ({ color, size }: { color: string; size: number }) =>
+      <Icon name={iconName} color={color} size={size} />;
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -21,7 +21,7 @@ export default function TabsNavigator() {
           name={TabsName.ExamplesList}
           component={ExamplesListTab}
           options={{
-            tabBarIcon: getTabBarIcon('ordered-list'),
+            tabBarIcon: getTabBarIcon('antdesign'),
           }}
         />
         <Tab.Screen
