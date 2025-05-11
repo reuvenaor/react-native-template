@@ -6,5 +6,6 @@
   },
   "ios": {
     "bundleIdentifier": "com.anonymous.exapp"
-  }
+  },
+  "entryPoint": "./index.js"
 }

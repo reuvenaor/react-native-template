@@ -58,27 +58,23 @@ Install dependencies:
 npm install --legacy-peer-deps
 ```
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
-
-To start Metro, run the following command from the _root_ of your React Native project:
-
-```bash
-npm start
-```
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
 ### For Android
 
 ```bash
-# Using React Native CLI
 npm run android
 ```
 
 ### For iOS
 
+First, install the pods:
+
 ```bash
-# Using React Native CLI
+npm run ios:pod-install
+```
+
+Then, run the iOS app:
+
+```bash
 npm run ios
 ```
 
@@ -94,12 +90,20 @@ npm run expo:check
 # Clean and refresh the project
 npm run refresh
 
-# Install iOS dependencies
-npm run ios:install
+# Clean iOS build
+npm run ios:clean
 
 # Clean Android build
 npm run android:clean
+
+# Get iOS devices
+npm run ios:devices
+
+# Get Android devices
+npm run android:devices
 ```
+
+
 
 ## License
 
