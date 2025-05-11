@@ -40,7 +40,7 @@
     "pino-pretty": "^13.0.0",
     "react": "19.0.0",
     "react-native": "0.79.2",
-    "react-native-executorch": "^0.3.2",
+    "react-native-executorch": "0.3.2",
     "react-native-fast-image": "^8.6.3",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-loading-spinner-overlay": "~3.0.1",
