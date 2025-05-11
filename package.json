@@ -6,10 +6,12 @@
   "scripts": {
     "android": "react-native run-android",
     "android:clean": "cd android && ./gradlew clean && cd ..",
+    "android:devices": "./scripts/android-devices.sh",
     "ios": "react-native run-ios",
     "ios:pod-install": "./scripts/ios.sh pod-install",
     "ios:clean": "./scripts/ios.sh clean",
     "ios:pod-update": "./scripts/ios.sh pod-update",
+    "ios:devices": "./scripts/ios-devices.sh",
     "lint": "eslint .",
     "format": "prettier --write .",
     "start": "react-native start",
