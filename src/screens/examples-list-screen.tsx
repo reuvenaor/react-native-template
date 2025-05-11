@@ -8,10 +8,10 @@ import {
 import AppSafeAreaView from '../components/hocs/safe-area-view';
 import FlashListExample from '../components/examples/flash-list';
 
-function ExamplesListScreen({}: {
+function ExamplesListScreen({ }: {
   navigation: NavigationProp<
     SettingsStackParamList,
-    SettingsScreenName.Settings
+    SettingsScreenName.Chat
   >;
 }) {
   return (

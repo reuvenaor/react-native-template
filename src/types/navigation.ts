@@ -1,5 +1,5 @@
 export enum SettingsScreenName {
-  Settings = 'Settings',
+  Chat = 'Chat',
 }
 
 export enum ExamplesListScreenName {
@@ -9,7 +9,7 @@ export enum ExamplesListScreenName {
 }
 
 export type SettingsStackParamList = {
-  [SettingsScreenName.Settings]: undefined;
+  [SettingsScreenName.Chat]: undefined;
 };
 
 export type ExamplesListStackParamList = {

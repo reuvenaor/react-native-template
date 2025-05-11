@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { StyleSheet, Dimensions, Platform } from 'react-native';
 import {
   Canvas,
@@ -21,17 +21,6 @@ const { width, height } = Dimensions.get('window');
 export const CARD_WIDTH = width * 0.9;
 export const CARD_HEIGHT = CARD_WIDTH / 1.618;
 
-const roundedRect = rrect(
-  rect(
-    (width - CARD_WIDTH) / 2,
-    (height - CARD_HEIGHT) / 2,
-    CARD_WIDTH,
-    CARD_HEIGHT,
-  ),
-  10,
-  10,
-);
-
 // Skia TeXt config
 const fontFamily = Platform.select({ ios: 'Helvetica', default: 'serif' });
 const fontStyle = {
@@ -41,20 +30,38 @@ const fontStyle = {
 };
 
 const SkiaCanvas = ({ rotateX }: { rotateX: AnimatedProp<string> }) => {
-  const font = matchFont(fontStyle as any);
+  const font = useMemo(() => matchFont(fontStyle as any), []);
+
+  const roundedRect = useMemo(() =>
+    rrect(
+      rect(
+        (width - CARD_WIDTH) / 2,
+        (height - CARD_HEIGHT) / 2,
+        CARD_WIDTH,
+        CARD_HEIGHT,
+      ),
+      10,
+      10,
+    ),
+    []
+  );
+
+  const startVec = useMemo(() => vec(0, 0), []);
+  const endVec = useMemo(() => vec(CARD_WIDTH, CARD_HEIGHT), []);
+  const circleCenter = useMemo(() => vec(width / 2, (height + CARD_HEIGHT - 20) / 2), []);
 
   return (
-    <Canvas style={styles.canvas} mode={'default'}>
+    <Canvas style={styles.canvas}>
       <Group color={'blue'}>
         <RoundedRect rect={roundedRect} color="cyan">
           <LinearGradient
-            start={vec(0, 0)}
-            end={vec(CARD_WIDTH, CARD_HEIGHT)}
+            start={startVec}
+            end={endVec}
             colors={['blue', 'cyan']}
           />
         </RoundedRect>
         <Circle
-          c={vec(width / 2, (height + CARD_HEIGHT - 20) / 2)}
+          c={circleCenter}
           r={20}
           color="blue"
         />
@@ -80,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SkiaCanvas;
+export default memo(SkiaCanvas);
