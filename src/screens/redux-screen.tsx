@@ -7,14 +7,29 @@
 
 import React from 'react';
 import { CounterRedux } from '../components/examples/counter-redux';
-import AppSafeAreaView from '../components/hocs/safe-area-view';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { StyleSheet } from 'react-native';
 
 function ReduxExampleScreen(): React.JSX.Element {
   return (
-    <AppSafeAreaView>
+    <KeyboardAwareScrollView
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      scrollEnabled>
       <CounterRedux />
-    </AppSafeAreaView>
+    </KeyboardAwareScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  contentContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
+});
 
 export default ReduxExampleScreen;
