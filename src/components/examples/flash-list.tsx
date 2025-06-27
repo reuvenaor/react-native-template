@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import {
   ExamplesListScreenName,
@@ -7,6 +7,7 @@ import {
 } from '../../types/navigation';
 import FastImage from 'react-native-fast-image';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { List, Divider } from 'react-native-paper';
 
 const screenArray = Object.values(ExamplesListScreenName);
 
@@ -26,21 +27,23 @@ const ListItem = ({ title, index }: ListItemProps) => {
   const navigation =
     useNavigation<NavigationProp<ExamplesListStackParamList>>();
   return (
-    <Pressable
-      key={title + index}
-      style={styles.item}
-      onPress={() => navigation.navigate(title)}>
-      <FastImage
-        style={styles.img}
-        source={{
-          uri: `https://unsplash.it/400/400?image=${index}`,
-          headers: { Authorization: 'someAuthToken' },
-          priority: FastImage.priority.normal,
-        }}
-        resizeMode={FastImage.resizeMode.contain}
-      />
-      <Text style={styles.title}>{title}</Text>
-    </Pressable>
+    <List.Item
+      title={title}
+      titleStyle={{ color: '#7F7F7F' }}
+      onPress={() => navigation.navigate(title)}
+      left={() => (
+        <FastImage
+          style={styles.img}
+          source={{
+            uri: `https://unsplash.it/400/400?image=${index}`,
+            headers: { Authorization: 'someAuthToken' },
+            priority: FastImage.priority.normal,
+          }}
+          resizeMode={FastImage.resizeMode.contain}
+        />
+      )}
+      right={props => <List.Icon {...props} icon="chevron-right" />}
+    />
   );
 };
 
@@ -58,7 +61,8 @@ const FlashListExample = () => {
             index={item.index}
           />
         )}
-        estimatedItemSize={200}
+        ItemSeparatorComponent={() => <Divider />}
+        estimatedItemSize={78}
       />
     </View>
   );
@@ -66,25 +70,13 @@ const FlashListExample = () => {
 
 const styles = StyleSheet.create({
   con: { flex: 1, width: '100%' },
-  listCon: { padding: 8 },
-  item: {
-    backgroundColor: 'lightblue',
-    padding: 16,
-    marginVertical: 8,
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
-    gap: 8,
-    borderRadius: 8,
-  },
-  title: {
-    fontSize: 16,
-    textAlign: 'right',
-  },
+  listCon: { paddingHorizontal: 8 },
   img: {
     width: 48,
     height: 48,
     borderRadius: 8,
+    alignSelf: 'center',
+    marginLeft: 8,
   },
 });
 
