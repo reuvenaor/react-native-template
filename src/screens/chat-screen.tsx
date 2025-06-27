@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { LLAMA3_2_1B_QLORA, useLLM } from 'react-native-executorch';
+import { LLAMA3_2_1B_QLORA, LLAMA3_2_TOKENIZER, LLAMA3_2_TOKENIZER_CONFIG, useLLM } from 'react-native-executorch';
 import { SenderType, MessageType, ColorPalette } from '../components/examples/chat-ai';
 import { Messages } from '../components/examples/chat-ai';
 import Icon from '@expo/vector-icons/AntDesign';
@@ -27,8 +27,8 @@ export default function ChatScreen() {
   // Reduced context window length from 6 to 4 to save memory
   const llama = useLLM({
     modelSource: LLAMA3_2_1B_QLORA,
-    tokenizerSource: require('../../assets/tokenizer.bin'),
-    contextWindowLength: 4,
+    tokenizerSource: LLAMA3_2_TOKENIZER,
+    tokenizerConfigSource: LLAMA3_2_TOKENIZER_CONFIG,
   });
 
   const textInputRef = useRef<TextInput>(null);
@@ -115,7 +115,7 @@ export default function ChatScreen() {
     setUserInput('');
     textInputRef.current?.clear();
     try {
-      await llama.generate(userInput);
+      await llama.generate([{ role: 'user', content: userInput }]);
     } catch (e) {
       console.error(e);
     }

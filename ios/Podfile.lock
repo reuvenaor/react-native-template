@@ -32,7 +32,7 @@ PODS:
     - Yoga
   - ExpoAsset (11.1.5):
     - ExpoModulesCore
-  - ExpoFileSystem (18.1.9):
+  - ExpoFileSystem (18.1.10):
     - ExpoModulesCore
   - ExpoFont (13.3.1):
     - ExpoModulesCore
@@ -1407,7 +1407,7 @@ PODS:
     - React-jsiexecutor
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
-  - react-native-executorch (0.3.2):
+  - react-native-executorch (0.4.6):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2399,7 +2399,7 @@ SPEC CHECKSUMS:
   EXConstants: 9f310f44bfedba09087042756802040e464323c0
   Expo: 769ab5c190382eedebc733af6708bbc9ca5f643b
   ExpoAsset: 3bc9adb7dbbf27ae82c18ca97eb988a3ae7e73b1
-  ExpoFileSystem: 0f3f466ecd3560f55768cd3f94ac3a17f093b8e6
+  ExpoFileSystem: c36eb8155eb2381c83dda7dc210e3eec332368b6
   ExpoFont: abbb91a911eb961652c2b0a22eef801860425ed6
   ExpoKeepAwake: bf0811570c8da182bfb879169437d4de298376e7
   ExpoModulesCore: 3ac17421302df62928fc99c133cf25bdbcf0b004
@@ -2441,7 +2441,7 @@ SPEC CHECKSUMS:
   React-logger: 8edfcedc100544791cd82692ca5a574240a16219
   React-Mapbuffer: c3f4b608e4a59dd2f6a416ef4d47a14400194468
   React-microtasksnativemodule: 054f34e9b82f02bd40f09cebd4083828b5b2beb6
-  react-native-executorch: 9dbeaeb7b1f493ab6b61dfecc4408c2e0b9a4c6f
+  react-native-executorch: 54ee7abc30ee42a0faa5256617b5ec3fa4be9f6a
   react-native-safe-area-context: 562163222d999b79a51577eda2ea8ad2c32b4d06
   react-native-skia: b6cb66e99a953dae6880348c92cfb20a76d90b4f
   React-NativeModulesApple: 2c4377e139522c3d73f5df582e4f051a838ff25e
