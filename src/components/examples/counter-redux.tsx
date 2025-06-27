@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
 import {
-  StyleSheet,
+  Button,
+  Card,
+  Divider,
+  IconButton,
   Text,
   TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+} from 'react-native-paper';
+
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { AsyncButton } from './async-button';
 import {
   decrement,
   increment,
@@ -18,90 +20,87 @@ import {
 
 export function CounterRedux() {
   const [incrementAmount, setIncrementAmount] = useState('2');
-
-  // The `state` arg is correctly typed as `RootState` already
   const count = useAppSelector(selectCount);
   const status = useAppSelector(state => state.counter.status);
   const dispatch = useAppDispatch();
+  const isLoading = status !== 'idle';
 
   return (
-    <View>
-      <View style={styles.row}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => dispatch(increment())}>
-          <Text style={styles.buttonText}>+</Text>
-        </TouchableOpacity>
-        <Text style={styles.value}>{count}</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => dispatch(decrement())}>
-          <Text style={styles.buttonText}>-</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.row}>
+    <Card style={styles.container}>
+      <Card.Title
+        title="Redux Counter"
+        subtitle="A React Native Paper Example"
+      />
+      <Card.Content>
+        <Text variant="displayLarge" style={styles.value}>
+          {count}
+        </Text>
+      </Card.Content>
+      <Card.Actions style={styles.cardActions}>
+        <IconButton
+          icon="minus-circle-outline"
+          size={32}
+          onPress={() => dispatch(decrement())}
+        />
+        <IconButton
+          icon="plus-circle-outline"
+          size={32}
+          onPress={() => dispatch(increment())}
+        />
+      </Card.Actions>
+      <Divider style={styles.divider} />
+      <Card.Content>
         <TextInput
+          label="Amount"
           style={styles.textbox}
           value={incrementAmount}
           keyboardType="numeric"
           onChangeText={setIncrementAmount}
+          mode="outlined"
         />
-        <View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() =>
-              dispatch(incrementByAmount({ amount: Number(incrementAmount) }))
-            }>
-            <Text style={styles.buttonText}>Add Amount</Text>
-          </TouchableOpacity>
-          <AsyncButton
-            style={styles.button}
-            disabled={status !== 'idle'}
-            onPress={() =>
-              dispatch(incrementAsync(Number(incrementAmount) || 0))
-            }>
-            <Text style={styles.buttonText}>Add Async</Text>
-          </AsyncButton>
-        </View>
-      </View>
-    </View>
+        <Button
+          mode="contained"
+          style={styles.actionButton}
+          onPress={() =>
+            dispatch(
+              incrementByAmount({ amount: Number(incrementAmount) || 0 }),
+            )
+          }>
+          Add Amount
+        </Button>
+        <Button
+          mode="contained-tonal"
+          style={styles.actionButton}
+          loading={isLoading}
+          disabled={isLoading}
+          onPress={() =>
+            dispatch(incrementAsync(Number(incrementAmount) || 0))
+          }>
+          Add Async
+        </Button>
+      </Card.Content>
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
+  container: {
+    margin: 16,
   },
   value: {
-    fontSize: 78,
-    paddingHorizontal: 16,
-    marginTop: 2,
-    color: 'rgb(112, 76, 182)',
-  },
-  button: {
-    backgroundColor: 'rgba(112, 76, 182, 0.1)',
-    borderRadius: 2,
-    paddingLeft: 12,
-    paddingRight: 12,
-    paddingBottom: 4,
-    margin: 2,
-  },
-  buttonText: {
-    color: 'rgb(112, 76, 182)',
-    fontSize: 32,
     textAlign: 'center',
+    marginVertical: 16,
+  },
+  cardActions: {
+    justifyContent: 'space-evenly',
+  },
+  divider: {
+    marginVertical: 8,
   },
   textbox: {
-    fontSize: 48,
-    padding: 2,
-    width: 64,
-    textAlign: 'center',
-    marginRight: 8,
-    borderWidth: 1,
-    justifyContent: 'center',
-    color: 'rgb(112, 76, 182)',
+    marginBottom: 16,
+  },
+  actionButton: {
+    marginVertical: 4,
   },
 });
