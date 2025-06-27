@@ -24,6 +24,7 @@ Navigation:
 Animation and UI:
 
 [![react-native-safe-area-context](https://img.shields.io/badge/react--native--safe--area--context-5.4.0-blue)](https://github.com/th3rdwave/react-native-safe-area-context)
+[![react-native-paper](https://img.shields.io/badge/react--native--paper-~5.14.5-blue)](https://callstack.github.io/react-native-paper/)
 [![react-native-reanimated](https://img.shields.io/badge/react--native--reanimated-~3.17.4-blue)](https://docs.swmansion.com/react-native-reanimated/)
 [![@shopify/react-native-skia](https://img.shields.io/badge/@shopify/react--native--skia-2.0.0--next.2-blue)](https://shopify.github.io/react-native-skia/)
 [![@react-native-vector-icons](https://img.shields.io/badge/@react--native--vector--icons/common-^11.0.0-blue)](https://github.com/oblador/react-native-vector-icons)
