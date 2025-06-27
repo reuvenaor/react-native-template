@@ -46,7 +46,7 @@ Performance:
 [![@shopify/flash-list](https://img.shields.io/badge/@shopify/flash--list-1.7.6-blue)](https://shopify.github.io/flash-list/)
 [![react-native-fast-image](https://img.shields.io/badge/react--native--fast--image-^8.6.3-blue)](https://github.com/DylanVann/react-native-fast-image)
 
-AI with ExecuTorch (with patch for RN 0.79)
+AI with ExecuTorch - **works best on real high-tier devices**
 
 [![react-native-executorch](https://img.shields.io/badge/react--native--executorch-^0.3.2-blue)](https://github.com/pytorch/executorch)
 
