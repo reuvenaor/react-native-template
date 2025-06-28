@@ -1,34 +1,23 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import { CounterRedux } from '../components/examples/counter-redux';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { StyleSheet } from 'react-native';
+import { CounterRedux } from '../components/examples/counter-redux';
+import KeyboardAwareScreen from '../components/hocs/keyboard-aware-screen';
 
 function ReduxExampleScreen(): React.JSX.Element {
   return (
-    <KeyboardAwareScrollView
-      style={styles.container}
+    <KeyboardAwareScreen
+      extraScrollHeight={50}
       contentContainerStyle={styles.contentContainer}
-      resetScrollToCoords={{ x: 0, y: 0 }}
-      scrollEnabled>
+    >
       <CounterRedux />
-    </KeyboardAwareScrollView>
+    </KeyboardAwareScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   contentContainer: {
-    flexGrow: 1,
     justifyContent: 'center',
+    flexGrow: 1,
   },
 });
 
