@@ -7,9 +7,16 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { ColorPalette } from './types';
+import { useCallback, useEffect } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+
 export default function AnimatedChatLoading() {
   const progress = useSharedValue(0);
-  progress.value = withRepeat(withTiming(1, { duration: 500 }), -1, true);
+
+  // Move animation setup to useEffect to avoid modifying shared value during render
+  useFocusEffect(useCallback(() => {
+    progress.value = withRepeat(withTiming(1, { duration: 500 }), -1, true);
+  }, []));
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -19,16 +26,22 @@ export default function AnimatedChatLoading() {
         [
           ColorPalette.seaBlueLight,
           ColorPalette.seaBlueMedium,
-          ColorPalette.seaBlueDark,
         ]
       ),
+      opacity: 0.7 + progress.value * 0.3,
     };
   });
 
   return (
     <View style={styles.messageLoadingContainer}>
       <Animated.View style={[styles.loadingDot, animatedStyle]} />
-      <Animated.View style={[styles.loadingDot, animatedStyle]} />
+      <Animated.View
+        style={[
+          styles.loadingDot,
+          animatedStyle,
+          { marginHorizontal: 6 }
+        ]}
+      />
       <Animated.View style={[styles.loadingDot, animatedStyle]} />
     </View>
   );
@@ -36,10 +49,10 @@ export default function AnimatedChatLoading() {
 
 const styles = StyleSheet.create({
   messageLoadingContainer: {
-    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
+    height: 20,
   },
   loadingDot: {
     width: 8,

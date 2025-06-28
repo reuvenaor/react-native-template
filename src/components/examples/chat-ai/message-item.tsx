@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { Surface, Avatar } from 'react-native-paper';
 import MarkdownComponent from './markdown-component';
-import Icon from '@expo/vector-icons/AntDesign';
 import { MessageItemProps, ColorPalette } from './types';
 
 const MessageItem = memo(({ message }: MessageItemProps) => {
@@ -12,11 +12,24 @@ const MessageItem = memo(({ message }: MessageItemProps) => {
       }
     >
       {message.role === 'assistant' && (
-        <View style={styles.aiMessageIconContainer}>
-          <Icon name={"heart"} width={24} height={24} />
-        </View>
+        <Avatar.Icon
+          size={32}
+          icon="brain"
+          color="white"
+          style={styles.aiAvatar}
+        />
       )}
-      <MarkdownComponent text={message.content} />
+      <Surface
+        style={[
+          styles.messageBubble,
+          message.role === 'assistant'
+            ? styles.assistantBubble
+            : styles.userBubble
+        ]}
+        elevation={1}
+      >
+        <MarkdownComponent text={message.content} />
+      </Surface>
     </View>
   );
 });
@@ -26,33 +39,32 @@ export default MessageItem;
 const styles = StyleSheet.create({
   aiMessage: {
     flexDirection: 'row',
-    maxWidth: '80%',
+    maxWidth: '85%',
     alignSelf: 'flex-start',
     marginVertical: 8,
+    marginLeft: 8,
   },
   userMessage: {
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    marginRight: 8,
-    marginVertical: 8,
-    maxWidth: 220,
-    borderRadius: 8,
-    backgroundColor: ColorPalette.seaBlueLight,
+    flexDirection: 'row',
+    maxWidth: '85%',
     alignSelf: 'flex-end',
+    marginVertical: 8,
+    marginRight: 8,
   },
-  aiMessageIconContainer: {
-    backgroundColor: ColorPalette.seaBlueLight,
-    height: 32,
-    width: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
+  aiAvatar: {
+    backgroundColor: ColorPalette.seaBlueMedium,
+    marginRight: 8,
+  },
+  messageBubble: {
     borderRadius: 16,
-    marginHorizontal: 7,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    maxWidth: '100%',
   },
-  messageText: {
-    fontSize: 14,
-    lineHeight: 19.6,
-    color: ColorPalette.primary,
-    fontFamily: 'regular',
+  assistantBubble: {
+    backgroundColor: '#F5F5F5',
+  },
+  userBubble: {
+    backgroundColor: ColorPalette.seaBlueLight,
   },
 });

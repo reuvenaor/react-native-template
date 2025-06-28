@@ -1,4 +1,5 @@
-import { Platform, Text } from 'react-native';
+import { Platform } from 'react-native';
+import { Text } from 'react-native-paper';
 import { ColorPalette } from './types';
 
 interface MarkdownComponentProps {
@@ -9,14 +10,11 @@ export default function MarkdownComponent({ text }: MarkdownComponentProps) {
   const fontSize = Platform.OS === 'ios' ? 16 : 14;
   return (
     <Text
+      variant="bodyMedium"
       style={{
         color: ColorPalette.primary,
-        fontFamily: 'regular',
-        lineHeight: 19.6,
         fontSize: fontSize,
-        alignSelf: 'flex-start',
-        marginTop: 0,
-        marginBottom: 0,
+        lineHeight: 20,
       }}
     >
       {text}
