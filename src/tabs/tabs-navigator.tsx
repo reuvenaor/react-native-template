@@ -5,7 +5,8 @@ import { BottomNavigation, Icon, useTheme } from 'react-native-paper';
 import { BottomTabParamList, TabsName } from '../types/navigation';
 import ExamplesListTab from './examples-list-tab';
 import SettingsTab from './settings-tab';
-import { StatusBar } from 'react-native';
+import { StatusBar, StyleSheet, View } from 'react-native';
+import Animated, { useAnimatedStyle, withSpring } from 'react-native-reanimated';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -20,6 +21,10 @@ export default function TabsNavigator() {
       <Tab.Navigator
         tabBar={({ navigation, state, descriptors, insets }) => (
           <BottomNavigation.Bar
+            style={[
+              styles.bottomBar,
+              { backgroundColor: theme.colors.elevation.level2 }
+            ]}
             keyboardHidesNavigationBar={true}
             navigationState={state}
             safeAreaInsets={insets}
@@ -42,7 +47,33 @@ export default function TabsNavigator() {
             renderIcon={({ route, focused, color }) => {
               const { options } = descriptors[route.key];
               if (options.tabBarIcon) {
-                return options.tabBarIcon({ focused, color, size: 24 });
+                return (
+                  <View style={styles.iconContainer}>
+                    {focused && (
+                      <Animated.View
+                        style={[
+                          styles.activeIndicator,
+                          { backgroundColor: theme.colors.primary },
+                          useAnimatedStyle(() => ({
+                            transform: [
+                              {
+                                scaleX: withSpring(1, {
+                                  damping: 15,
+                                  stiffness: 120
+                                })
+                              },
+                            ],
+                          }))
+                        ]}
+                      />
+                    )}
+                    {options.tabBarIcon({
+                      focused,
+                      color: focused ? theme.colors.primary : theme.colors.onSurfaceVariant,
+                      size: 32
+                    })}
+                  </View>
+                );
               }
               return null;
             }}
@@ -50,6 +81,9 @@ export default function TabsNavigator() {
               const { options } = descriptors[route.key];
               return options.tabBarLabel as string;
             }}
+            activeIndicatorStyle={{ height: 0 }}
+            activeColor={theme.colors.primary}
+            inactiveColor={theme.colors.onSurfaceVariant}
           />
         )}
       >
@@ -79,3 +113,31 @@ export default function TabsNavigator() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  bottomBar: {
+    height: 70,
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+  },
+  iconContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    width: 60,
+    height: 36,
+  },
+  activeIndicator: {
+    position: 'absolute',
+    top: -6,
+    height: 3,
+    width: 24,
+    borderRadius: 2,
+    transform: [{ scaleX: 0 }]
+  }
+});
