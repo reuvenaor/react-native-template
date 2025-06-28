@@ -82,6 +82,34 @@ Then, run the iOS app:
 npm run ios
 ```
 
+### App Icons and Splash Screens
+
+This template includes custom scripts to generate app icons and splash screens for both iOS and Android:
+
+#### Generate icons and splash screens for bare React Native with Expo modules
+
+```bash
+node scripts/icon-generator-bare-expo.js
+```
+
+This script generates:
+- App icons for Android in various densities (mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi)
+- Round icons for Android
+- App icons for iOS in all required dimensions
+- Splash screen images for Android
+- Splash screen background color for iOS
+- Standard Expo assets in the assets/ directory for compatibility
+
+#### Generate iOS splash screen logo
+
+```bash
+node scripts/ios-splash-logo.js
+```
+
+This script generates:
+- iOS splash screen logo image in 1x, 2x, and 3x resolutions
+- Updates the necessary Contents.json file
+
 ### Additional Commands
 
 ```bash
