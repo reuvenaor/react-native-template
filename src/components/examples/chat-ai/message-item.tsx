@@ -1,10 +1,12 @@
 import React, { memo } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Surface, Avatar } from 'react-native-paper';
+import { Surface, Avatar, useTheme } from 'react-native-paper';
 import MarkdownComponent from './markdown-component';
-import { MessageItemProps, ColorPalette } from './types';
+import { MessageItemProps } from './types';
 
 const MessageItem = memo(({ message }: MessageItemProps) => {
+  const theme = useTheme();
+
   return (
     <View
       style={
@@ -15,16 +17,16 @@ const MessageItem = memo(({ message }: MessageItemProps) => {
         <Avatar.Icon
           size={32}
           icon="brain"
-          color="white"
-          style={styles.aiAvatar}
+          color={theme.colors.onPrimary}
+          style={{ backgroundColor: theme.colors.primary, marginRight: 8 }}
         />
       )}
       <Surface
         style={[
           styles.messageBubble,
           message.role === 'assistant'
-            ? styles.assistantBubble
-            : styles.userBubble
+            ? { backgroundColor: theme.colors.surface }
+            : { backgroundColor: theme.colors.primaryContainer }
         ]}
         elevation={1}
       >
@@ -51,20 +53,10 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginRight: 8,
   },
-  aiAvatar: {
-    backgroundColor: ColorPalette.seaBlueMedium,
-    marginRight: 8,
-  },
   messageBubble: {
     borderRadius: 16,
     paddingHorizontal: 16,
     paddingVertical: 10,
     maxWidth: '100%',
-  },
-  assistantBubble: {
-    backgroundColor: '#F5F5F5',
-  },
-  userBubble: {
-    backgroundColor: ColorPalette.seaBlueLight,
   },
 });

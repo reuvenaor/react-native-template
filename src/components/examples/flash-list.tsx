@@ -9,7 +9,9 @@ import FastImage from 'react-native-fast-image';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { List, Divider } from 'react-native-paper';
 
-const screenArray = Object.values(ExamplesListScreenName);
+const screenArray = Object.values(ExamplesListScreenName).filter(
+  (screen) => screen !== ExamplesListScreenName.ExamplesList,
+);
 
 type ListItemProps = {
   title: ExamplesListScreenName;
