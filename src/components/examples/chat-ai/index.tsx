@@ -15,6 +15,7 @@ import {
   Surface,
   Avatar,
   ActivityIndicator,
+  useTheme,
 } from 'react-native-paper';
 import {
   LLAMA3_2_1B_QLORA,
@@ -35,6 +36,7 @@ import { useFocusEffect } from '@react-navigation/native';
 const SYSTEM_PROMPT = "You are a helpful AI assistant running on a mobile device with limited resources. Provide concise, accurate responses. If you don't know something, just say so.";
 
 export default function ChatAI() {
+  const theme = useTheme();
   const [chatHistory, setChatHistory] = useState<Array<MessageType>>([]);
   const [isTextInputFocused, setIsTextInputFocused] = useState(false);
   const [userInput, setUserInput] = useState('');
@@ -151,7 +153,7 @@ export default function ChatAI() {
 
   return !llama.isReady ? (
     <Surface style={styles.loadingContainer}>
-      <ActivityIndicator animating size="large" color={ColorPalette.seaBlueLight} />
+      <ActivityIndicator animating size="large" color={theme.colors.primary} />
       <Text style={styles.loadingText}>
         Loading the model {(llama.downloadProgress * 100).toFixed(0)}%
       </Text>
@@ -159,14 +161,26 @@ export default function ChatAI() {
   ) : (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAwareScreen>
-        <Surface style={styles.topContainer} elevation={1}>
+        <Surface
+          style={[
+            styles.topContainer,
+            { backgroundColor: theme.colors.surfaceVariant }
+          ]}
+          elevation={1}
+        >
           <Avatar.Icon
             size={40}
             icon="brain"
-            color="white"
-            style={{ backgroundColor: ColorPalette.seaBlueMedium }}
+            color={theme.colors.onPrimary}
+            style={{ backgroundColor: theme.colors.primary }}
           />
-          <Text style={styles.textModelName} variant="titleMedium">
+          <Text
+            style={[
+              styles.textModelName,
+              { color: theme.colors.onSurfaceVariant }
+            ]}
+            variant="titleMedium"
+          >
             Llama 3.2 1B QLoRA
           </Text>
         </Surface>

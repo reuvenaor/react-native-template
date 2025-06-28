@@ -11,10 +11,12 @@ import {
   IconButton,
   Dialog,
   Portal,
+  useTheme,
 } from 'react-native-paper';
 import { ColorPalette } from './chat-ai/types';
 
 export default function Settings() {
+  const theme = useTheme();
   const [darkMode, setDarkMode] = useState(false);
   const [notifications, setNotifications] = useState(true);
   const [dataCollection, setDataCollection] = useState(true);
@@ -22,8 +24,22 @@ export default function Settings() {
 
   return (
     <>
-      <Surface style={styles.header} elevation={1}>
-        <Text variant="headlineMedium" style={styles.headerTitle}>Settings</Text>
+      <Surface
+        style={[
+          styles.header,
+          { backgroundColor: theme.colors.surfaceVariant }
+        ]}
+        elevation={1}
+      >
+        <Text
+          variant="labelLarge"
+          style={[
+            styles.headerTitle,
+            { color: theme.colors.onSurfaceVariant }
+          ]}
+        >
+          App configuration example
+        </Text>
       </Surface>
 
       <ScrollView style={styles.scrollView}>

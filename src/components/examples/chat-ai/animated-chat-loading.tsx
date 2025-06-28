@@ -7,13 +7,12 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { ColorPalette } from './types';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 
 export default function AnimatedChatLoading() {
   const progress = useSharedValue(0);
 
-  // Move animation setup to useEffect to avoid modifying shared value during render
   useFocusEffect(useCallback(() => {
     progress.value = withRepeat(withTiming(1, { duration: 500 }), -1, true);
   }, []));

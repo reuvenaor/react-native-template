@@ -51,6 +51,7 @@ export default function TabsNavigator() {
           name={TabsName.ExamplesList}
           component={ExamplesListTab}
           options={{
+            headerShown: false,
             tabBarLabel: 'Examples',
             tabBarIcon: ({ color, size }) => (
               <Icon source="view-list" color={color} size={size} />
@@ -61,6 +62,7 @@ export default function TabsNavigator() {
           name={TabsName.Settings}
           component={SettingsTab}
           options={{
+            headerShown: false,
             tabBarLabel: 'Settings',
             tabBarIcon: ({ color, size }) => (
               <Icon source="cog" color={color} size={size} />
