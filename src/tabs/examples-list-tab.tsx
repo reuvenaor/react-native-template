@@ -4,6 +4,7 @@ import { ExamplesListScreenName } from '../types/navigation';
 import ExamplesListScreen from '../screens/examples-list-screen';
 import ReduxExampleScreen from '../screens/redux-screen';
 import SkiaAccelScreen from '../screens/skia-accelerometer-screen';
+import ChatScreen from '../screens/chat-screen';
 
 const ExamplesListStack = createNativeStackNavigator();
 
@@ -22,6 +23,10 @@ function ExamplesListTab() {
       <ExamplesListStack.Screen
         name={ExamplesListScreenName.SkiaAccelerometer}
         component={SkiaAccelScreen}
+      />
+      <ExamplesListStack.Screen
+        name={ExamplesListScreenName.Chat}
+        component={ChatScreen}
       />
     </ExamplesListStack.Navigator>
   );

@@ -1,21 +1,23 @@
 export enum SettingsScreenName {
-  Chat = 'Chat',
+  Settings = 'Settings',
 }
 
 export enum ExamplesListScreenName {
   ExamplesList = 'Examples List',
   ReduxExample = 'Redux Example',
   SkiaAccelerometer = 'Skia Accelerometer',
+  Chat = 'Chat',
 }
 
 export type SettingsStackParamList = {
-  [SettingsScreenName.Chat]: undefined;
+  [SettingsScreenName.Settings]: undefined;
 };
 
 export type ExamplesListStackParamList = {
   [ExamplesListScreenName.ExamplesList]: undefined;
   [ExamplesListScreenName.ReduxExample]: undefined;
   [ExamplesListScreenName.SkiaAccelerometer]: undefined;
+  [ExamplesListScreenName.Chat]: undefined;
 };
 
 export enum TabsName {

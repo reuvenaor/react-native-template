@@ -4,20 +4,19 @@ import {
   SettingsScreenName,
   SettingsStackParamList,
 } from '../types/navigation';
-import ChatScreen from '../screens/chat-screen';
+import SettingsScreen from '../screens/settings-screen';
 
-const ExamplesListStack = createNativeStackNavigator<SettingsStackParamList>();
+const SettingsStack = createNativeStackNavigator<SettingsStackParamList>();
 
 function SettingsTab() {
-
   return (
-    <ExamplesListStack.Navigator
+    <SettingsStack.Navigator
       screenOptions={{ headerShown: false, orientation: 'portrait' }}>
-      <ExamplesListStack.Screen
-        name={SettingsScreenName.Chat}
-        component={ChatScreen}
+      <SettingsStack.Screen
+        name={SettingsScreenName.Settings}
+        component={SettingsScreen}
       />
-    </ExamplesListStack.Navigator>
+    </SettingsStack.Navigator>
   );
 }
 

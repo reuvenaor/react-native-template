@@ -1,20 +1,24 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { CounterRedux } from '../components/examples/counter-redux';
-import AppSafeAreaView from '../components/hocs/safe-area-view';
+import KeyboardAwareScreen from '../components/hocs/keyboard-aware-screen';
 
 function ReduxExampleScreen(): React.JSX.Element {
   return (
-    <AppSafeAreaView>
+    <KeyboardAwareScreen
+      extraScrollHeight={50}
+      contentContainerStyle={styles.contentContainer}
+    >
       <CounterRedux />
-    </AppSafeAreaView>
+    </KeyboardAwareScreen>
   );
 }
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    justifyContent: 'center',
+    flexGrow: 1,
+  },
+});
 
 export default ReduxExampleScreen;
