@@ -6,12 +6,13 @@ import Animated, {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
-import { ColorPalette } from './types';
 import { useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
+import { useTheme } from 'react-native-paper';
 
 export default function AnimatedChatLoading() {
   const progress = useSharedValue(0);
+  const theme = useTheme();
 
   useFocusEffect(useCallback(() => {
     progress.value = withRepeat(withTiming(1, { duration: 500 }), -1, true);
@@ -23,8 +24,8 @@ export default function AnimatedChatLoading() {
         progress.value,
         [0, 1],
         [
-          ColorPalette.seaBlueLight,
-          ColorPalette.seaBlueMedium,
+          theme.colors.primary,
+          theme.colors.primaryContainer,
         ]
       ),
       opacity: 0.7 + progress.value * 0.3,

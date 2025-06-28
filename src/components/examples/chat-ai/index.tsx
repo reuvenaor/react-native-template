@@ -26,7 +26,6 @@ import {
 import {
   SenderType,
   MessageType,
-  ColorPalette,
 } from './types';
 import Messages from './messages';
 import KeyboardAwareScreen from '../../hocs/keyboard-aware-screen';
@@ -198,18 +197,28 @@ export default function ChatAI() {
             <Avatar.Icon
               size={80}
               icon="brain"
-              color="white"
+              color={theme.colors.onPrimary}
               style={{
-                backgroundColor: ColorPalette.seaBlueLight,
+                backgroundColor: theme.colors.primary,
                 marginBottom: 16,
                 borderRadius: 40,
                 elevation: 4
               }}
             />
-            <Text style={styles.helloText} variant="headlineMedium">
+            <Text
+              style={{ fontWeight: '600', color: theme.colors.onSurface }}
+              variant="headlineMedium"
+            >
               Hello! 👋
             </Text>
-            <Text style={styles.bottomHelloText} variant="bodyLarge">
+            <Text
+              style={{
+                marginTop: 8,
+                color: theme.colors.onSurface,
+                textAlign: 'center'
+              }}
+              variant="bodyLarge"
+            >
               What can I help you with?
             </Text>
           </Surface>
@@ -225,15 +234,15 @@ export default function ChatAI() {
             onFocus={() => setIsTextInputFocused(true)}
             onBlur={() => setIsTextInputFocused(false)}
             style={styles.textInput}
-            outlineColor={isTextInputFocused ? ColorPalette.seaBlueDark : ColorPalette.seaBlueLight}
-            activeOutlineColor={ColorPalette.seaBlueDark}
+            outlineColor={isTextInputFocused ? theme.colors.primary : theme.colors.primaryContainer}
+            activeOutlineColor={theme.colors.primary}
             onChangeText={(text: string) => setUserInput(text)}
             value={userInput}
             right={
               userInput ? (
                 <TextInput.Icon
                   icon="send"
-                  color={ColorPalette.seaBlueLight}
+                  color={theme.colors.primary}
                   disabled={llama.isGenerating}
                   onPress={async () => !llama.isGenerating && (await sendMessage())}
                 />
@@ -245,7 +254,7 @@ export default function ChatAI() {
             <IconButton
               icon="stop-circle"
               size={24}
-              iconColor={ColorPalette.seaBlueDark}
+              iconColor={theme.colors.primary}
               style={styles.stopButton}
               onPress={llama.interrupt}
             />
@@ -287,7 +296,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   textModelName: {
-    color: ColorPalette.primary,
     marginLeft: 12,
     fontWeight: '500',
   },
@@ -297,15 +305,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 16,
-  },
-  helloText: {
-    fontWeight: '600',
-    color: ColorPalette.primary,
-  },
-  bottomHelloText: {
-    marginTop: 8,
-    color: ColorPalette.primary,
-    textAlign: 'center',
   },
   bottomContainer: {
     minHeight: 80,

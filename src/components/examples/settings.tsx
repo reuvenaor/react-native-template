@@ -13,7 +13,6 @@ import {
   Portal,
   useTheme,
 } from 'react-native-paper';
-import { ColorPalette } from './chat-ai/types';
 
 export default function Settings() {
   const theme = useTheme();
@@ -26,10 +25,10 @@ export default function Settings() {
     <>
       <Surface
         style={[
-          styles.header,
+          styles.topContainer,
           { backgroundColor: theme.colors.surfaceVariant }
         ]}
-        elevation={1}
+        elevation={0}
       >
         <Text
           variant="labelLarge"
@@ -42,7 +41,7 @@ export default function Settings() {
         </Text>
       </Surface>
 
-      <ScrollView style={styles.scrollView}>
+      <ScrollView style={[styles.scrollView, { backgroundColor: theme.colors.background }]}>
         <List.Section>
           <List.Subheader>Appearance</List.Subheader>
           <List.Item
@@ -100,8 +99,8 @@ export default function Settings() {
               <Avatar.Icon
                 size={60}
                 icon="brain"
-                style={styles.aboutIcon}
-                color="white"
+                style={{ backgroundColor: theme.colors.primary, marginBottom: 16 }}
+                color={theme.colors.onPrimary}
               />
               <Text variant="bodyMedium" style={styles.aboutText}>
                 This React Native application demonstrates integration with on-device AI models using ExecuTorch.
@@ -119,11 +118,7 @@ export default function Settings() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  header: {
+  topContainer: {
     height: 68,
     width: '100%',
     flexDirection: 'row',
@@ -134,7 +129,6 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 16,
   },
   headerTitle: {
-    color: ColorPalette.primary,
     fontWeight: '500',
   },
   scrollView: {
@@ -143,10 +137,6 @@ const styles = StyleSheet.create({
   aboutContent: {
     alignItems: 'center',
     paddingVertical: 10,
-  },
-  aboutIcon: {
-    backgroundColor: ColorPalette.seaBlueMedium,
-    marginBottom: 16,
   },
   aboutText: {
     textAlign: 'center',
