@@ -1,16 +1,22 @@
 import { CommonActions, NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
-import { BottomNavigation, Icon } from 'react-native-paper';
+import { BottomNavigation, Icon, useTheme } from 'react-native-paper';
 import { BottomTabParamList, TabsName } from '../types/navigation';
 import ExamplesListTab from './examples-list-tab';
 import SettingsTab from './settings-tab';
+import { StatusBar } from 'react-native';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function TabsNavigator() {
+  const theme = useTheme();
   return (
     <NavigationContainer>
+      <StatusBar
+        backgroundColor={theme.colors.surfaceVariant}
+        barStyle={theme.dark ? 'light-content' : 'dark-content'}
+      />
       <Tab.Navigator
         tabBar={({ navigation, state, descriptors, insets }) => (
           <BottomNavigation.Bar
