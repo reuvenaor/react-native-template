@@ -29,6 +29,8 @@
     "features:setup-chat": "node scripts/setup-chat-feature.js",
     "features:enable-chat": "node scripts/setup-chat-feature.js --enable",
     "features:disable-chat": "node scripts/setup-chat-feature.js --disable",
+    "icons:generate": "node scripts/icon-generator-bare-expo.js",
+    "icons:splash-logo": "node scripts/ios-splash-logo.js",
     "postinstall": "patch-package"
   },
   "dependencies": {
