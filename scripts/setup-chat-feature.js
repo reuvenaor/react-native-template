@@ -19,11 +19,12 @@ function ensureDirectoryExists(dirPath) {
   }
 }
 
-// Check if executorch dependency is installed
+// Check if executorch dependency is installed with correct version
 function isExecutorchInstalled() {
   try {
     const packageJson = JSON.parse(fs.readFileSync(PACKAGE_JSON, 'utf8'));
-    return !!packageJson.dependencies['react-native-executorch'];
+    const installedVersion = packageJson.dependencies && packageJson.dependencies['react-native-executorch'];
+    return installedVersion === '0.4.6';
   } catch (error) {
     console.error('Error checking executorch installation:', error);
     return false;
@@ -33,9 +34,9 @@ function isExecutorchInstalled() {
 // Install executorch dependency
 function installExecutorch() {
   try {
-    console.log('Installing react-native-executorch dependency...');
-    execSync('npm install react-native-executorch --save --legacy-peer-deps', { stdio: 'inherit' });
-    console.log('Installed react-native-executorch successfully.');
+    console.log('Installing react-native-executorch v0.4.6 dependency...');
+    execSync('npm install react-native-executorch@0.4.6 --save --legacy-peer-deps', { stdio: 'inherit' });
+    console.log('Installed react-native-executorch v0.4.6 successfully.');
   } catch (error) {
     console.error('Error installing react-native-executorch:', error);
     throw error;
@@ -132,8 +133,24 @@ export { ChatScreen };
     console.log('You may need to manually update the import in', NAVIGATION_FILE);
   }
 
-  // Install react-native-executorch if not installed
-  if (!isExecutorchInstalled()) {
+  // Check if executorch is installed with the correct version
+  try {
+    const packageJson = JSON.parse(fs.readFileSync(PACKAGE_JSON, 'utf8'));
+    const installedVersion = packageJson.dependencies && packageJson.dependencies['react-native-executorch'];
+    
+    if (!installedVersion) {
+      console.log('react-native-executorch is not installed. Installing version 0.4.6...');
+      installExecutorch();
+    } else if (installedVersion !== '0.4.6') {
+      console.log(`Detected react-native-executorch version ${installedVersion}, but version 0.4.6 is required.`);
+      console.log('Reinstalling with the correct version...');
+      uninstallExecutorch();
+      installExecutorch();
+    } else {
+      console.log('react-native-executorch v0.4.6 is already installed.');
+    }
+  } catch (error) {
+    console.error('Error checking package.json:', error);
     installExecutorch();
   }
 
