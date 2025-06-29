@@ -4,7 +4,7 @@ import { ExamplesListScreenName } from '../types/navigation';
 import ExamplesListScreen from '../screens/examples-list-screen';
 import ReduxExampleScreen from '../screens/redux-screen';
 import SkiaAccelScreen from '../screens/skia-accelerometer-screen';
-import ChatScreen from '../screens/chat-screen';
+import { ChatScreen } from '../features/chat-ai';
 import { usesScreenOptions } from '../hooks/screen-options';
 
 const ExamplesListStack = createNativeStackNavigator();

@@ -28,7 +28,8 @@ import {
   MessageType,
 } from './types';
 import Messages from './messages';
-import KeyboardAwareScreen from '../../hocs/keyboard-aware-screen';
+// @ts-ignore
+import KeyboardAwareScreen from '../../../components/hocs/keyboard-aware-screen';
 import { useFocusEffect } from '@react-navigation/native';
 
 // Define system prompt
