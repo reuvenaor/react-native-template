@@ -47,10 +47,24 @@ Performance:
 [![@shopify/flash-list](https://img.shields.io/badge/@shopify/flash--list-1.7.6-blue)](https://shopify.github.io/flash-list/)
 [![react-native-fast-image](https://img.shields.io/badge/react--native--fast--image-^8.6.3-blue)](https://github.com/DylanVann/react-native-fast-image)
 
-AI with ExecuTorch - **works best on real high-tier devices**
+**AI with ExecuTorch** - **works best on real high-tier devices**
 
-[![react-native-executorch](https://img.shields.io/badge/react--native--executorch-^0.3.2-blue)](https://github.com/pytorch/executorch)
+[![react-native-executorch](https://img.shields.io/badge/react--native--executorch-0.4.6-blue)](https://github.com/pytorch/executorch)
 
+The ChatAI feature can be enabled or disabled as needed:
+
+```bash
+# Enable the ChatAI feature (installs dependencies)
+npm run features:enable-chat
+
+# Disable the ChatAI feature (optionally removes dependencies)
+npm run features:disable-chat
+
+# Interactive setup with more options
+npm run features:setup-chat
+```
+
+When disabled, the app will show a placeholder screen with instructions for re-enabling the feature. This modular approach helps reduce bundle size and dependencies when the AI features aren't needed.
 
 ## Getting Started
 
@@ -89,7 +103,7 @@ This template includes custom scripts to generate app icons and splash screens f
 #### Generate icons and splash screens for bare React Native with Expo modules
 
 ```bash
-node scripts/icon-generator-bare-expo.js
+npm run icons:generate
 ```
 
 This script generates:
@@ -103,7 +117,7 @@ This script generates:
 #### Generate iOS splash screen logo
 
 ```bash
-node scripts/ios-splash-logo.js
+npm run icons:splash-logo
 ```
 
 This script generates:
