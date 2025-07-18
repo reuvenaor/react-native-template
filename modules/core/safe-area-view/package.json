@@ -1,0 +1,24 @@
+{
+  "name": "md-safe-area-view",
+  "version": "0.0.0",
+  "description": "Safe Area Wrapper",
+  "main": "src/index",
+  "codegenConfig": {
+    "name": "MdSafeAreaViewSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "author": " <> ()",
+  "license": "UNLICENSED",
+  "homepage": "#readme",
+  "create-react-native-library": {
+    "languages": "js",
+    "type": "library",
+    "version": "0.51.1"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-safe-area-context": "*"
+  }
+}

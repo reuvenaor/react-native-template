@@ -1,0 +1,19 @@
+{
+  "name": "md-error-boundary",
+  "version": "0.0.0",
+  "description": "Error Boundry component",
+  "main": "src/index",
+  "codegenConfig": {
+    "name": "MdErrorBoundarySpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "author": " <> ()",
+  "license": "UNLICENSED",
+  "homepage": "#readme",
+  "create-react-native-library": {
+    "languages": "js",
+    "type": "library",
+    "version": "0.51.1"
+  }
+}

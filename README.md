@@ -47,25 +47,6 @@ Performance:
 [![@shopify/flash-list](https://img.shields.io/badge/@shopify/flash--list-1.7.6-blue)](https://shopify.github.io/flash-list/)
 [![react-native-fast-image](https://img.shields.io/badge/react--native--fast--image-^8.6.3-blue)](https://github.com/DylanVann/react-native-fast-image)
 
-**AI with ExecuTorch** - **works best on real high-tier devices**
-
-[![react-native-executorch](https://img.shields.io/badge/react--native--executorch-0.4.6-blue)](https://github.com/pytorch/executorch)
-
-The ChatAI feature can be enabled or disabled as needed:
-
-```bash
-# Enable the ChatAI feature (installs dependencies)
-npm run features:enable-chat
-
-# Disable the ChatAI feature (optionally removes dependencies)
-npm run features:disable-chat
-
-# Interactive setup with more options
-npm run features:setup-chat
-```
-
-When disabled, the app will show a placeholder screen with instructions for re-enabling the feature. This modular approach helps reduce bundle size and dependencies when the AI features aren't needed.
-
 ## Getting Started
 
 > **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
@@ -96,17 +77,56 @@ Then, run the iOS app:
 npm run ios
 ```
 
-### App Icons and Splash Screens
+## Optional Feature Modules
+
+This template includes three optional feature modules that can be enabled or disabled independently:
+
+### 🤖 Chat AI Module
+
+**AI with ExecuTorch** - **works best on real high-tier devices**
+
+[![react-native-executorch](https://img.shields.io/badge/react--native--executorch-0.4.6-blue)](https://github.com/pytorch/executorch)
+
+AI chat functionality with ExecuTorch integration for on-device inference.
+
+### 🔄 Redux Module
+
+State management examples with Redux Toolkit, including counter examples and middleware demonstrations.
+
+### 🎨 Skia Accelerometer Module
+
+Interactive graphics using React Native Skia combined with device accelerometer sensors for motion-based animations.
+
+### Module Management
+
+```bash
+# Interactive module setup
+npm run modules:setup
+
+# Check status of all modules
+npm run modules:status
+
+# Enable specific modules
+npm run modules:enable chat-ai-screen
+
+# Disable specific modules
+npm run modules:disable chat-ai-screen
+```
+
+Each module is implemented as a separate React Native library that can be linked/unlinked independently. When disabled, modules show placeholder screens with re-enabling instructions. This modular approach helps reduce bundle size and dependencies when features aren't needed.
+
+## App Icons and Splash Screens
 
 This template includes custom scripts to generate app icons and splash screens for both iOS and Android:
 
-#### Generate icons and splash screens for bare React Native with Expo modules
+### Generate icons and splash screens for bare React Native with Expo modules
 
 ```bash
 npm run icons:generate
 ```
 
 This script generates:
+
 - App icons for Android in various densities (mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi)
 - Round icons for Android
 - App icons for iOS in all required dimensions
@@ -114,13 +134,14 @@ This script generates:
 - Splash screen background color for iOS
 - Standard Expo assets in the assets/ directory for compatibility
 
-#### Generate iOS splash screen logo
+### Generate iOS splash screen logo
 
 ```bash
 npm run icons:splash-logo
 ```
 
 This script generates:
+
 - iOS splash screen logo image in 1x, 2x, and 3x resolutions
 - Updates the necessary Contents.json file
 
@@ -148,8 +169,6 @@ npm run ios:devices
 # Get Android devices
 npm run android:devices
 ```
-
-
 
 ## License
 
