@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { CounterRedux } from './components/counter-redux';
 import { KeyboardAwareScreen } from 'md-keyboard-aware-screen';
 
-export function ReduxExampleScreen(): React.JSX.Element {
+export default function ReduxExampleScreen(): React.JSX.Element {
   return (
     <KeyboardAwareScreen
       extraScrollHeight={50}

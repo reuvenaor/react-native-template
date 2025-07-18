@@ -1,11 +1,11 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ExamplesListScreenName } from '../types/navigation';
-import ExamplesListScreen from '../screens/examples-list-screen';
-import { ReduxExampleScreen } from 'md-redux-screen';
-import { SkiaAccelScreen } from 'md-skia-accelerometer-screen';
-import { ChatScreen } from 'md-chat-ai-screen';
 import { usesScreenOptions } from '../hooks/screen-options';
+import ExamplesListScreen from '../screens/examples-list-screen';
+import ReduxScreenOpt from '../screens/redux-screen-opt';
+import ChatScreenOpt from '../screens/chat-ai-screen-opt';
+import SkiaScreenOpt from '../screens/skia-screen-opt';
 
 const ExamplesListStack = createNativeStackNavigator();
 
@@ -20,17 +20,17 @@ function ExamplesListTab() {
       />
       <ExamplesListStack.Screen
         name={ExamplesListScreenName.ReduxExample}
-        component={ReduxExampleScreen}
+        component={ReduxScreenOpt}
         options={{ title: 'Redux Example' }}
       />
       <ExamplesListStack.Screen
         name={ExamplesListScreenName.SkiaAccelerometer}
-        component={SkiaAccelScreen}
+        component={SkiaScreenOpt}
         options={{ title: 'Accelerometer' }}
       />
       <ExamplesListStack.Screen
         name={ExamplesListScreenName.Chat}
-        component={ChatScreen}
+        component={ChatScreenOpt}
         options={{ title: 'Chat AI' }}
       />
     </ExamplesListStack.Navigator>
