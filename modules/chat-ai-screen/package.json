@@ -1,0 +1,29 @@
+{
+  "name": "md-chat-ai-screen",
+  "version": "0.0.0",
+  "description": "LLM chat screen",
+  "main": "src/index",
+  "codegenConfig": {
+    "name": "MdChatAiScreenSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "author": " <> ()",
+  "license": "UNLICENSED",
+  "homepage": "#readme",
+  "create-react-native-library": {
+    "languages": "js",
+    "type": "library",
+    "version": "0.51.1"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-paper": "*",
+    "expo": "*",
+    "react-native-executorch": "*",
+    "@expo/config-plugins": "*",
+    "react-native-reanimated": "*",
+    "@react-navigation/native": "*"
+  }
+}
