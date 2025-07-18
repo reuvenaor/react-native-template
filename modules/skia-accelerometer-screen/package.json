@@ -1,0 +1,26 @@
+{
+  "name": "md-skia-accelerometer-screen",
+  "version": "0.0.0",
+  "description": "Skia accelerometer screen example",
+  "main": "src/index",
+  "codegenConfig": {
+    "name": "MdSkiaAccelerometerScreenSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "author": " <> ()",
+  "license": "UNLICENSED",
+  "homepage": "#readme",
+  "create-react-native-library": {
+    "languages": "js",
+    "type": "library",
+    "version": "0.51.1"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-reanimated": "*",
+    "@shopify/react-native-skia": "*",
+    "react-native-sensors": "*"
+  }
+}
