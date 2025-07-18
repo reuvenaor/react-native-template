@@ -1,0 +1,23 @@
+{
+  "name": "md-logger",
+  "version": "0.0.0",
+  "description": "Logger component",
+  "main": "src/index",
+  "codegenConfig": {
+    "name": "MdLoggerSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "author": " <> ()",
+  "license": "UNLICENSED",
+  "homepage": "#readme",
+  "create-react-native-library": {
+    "languages": "js",
+    "type": "library",
+    "version": "0.51.1"
+  },
+  "devDependencies": {
+    "pino": "^9.5.0",
+    "pino-pretty": "^13.0.0"
+  }
+}
