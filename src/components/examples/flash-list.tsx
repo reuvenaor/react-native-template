@@ -10,8 +10,10 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { List, Divider } from 'react-native-paper';
 
 const screenArray = Object.values(ExamplesListScreenName).filter(
-  (screen) => screen !== ExamplesListScreenName.ExamplesList,
+  screen => screen !== ExamplesListScreenName.ExamplesList
 );
+
+type IconProps = { color: string; style?: any };
 
 type ListItemProps = {
   title: ExamplesListScreenName;
@@ -22,34 +24,42 @@ const DATA: Array<ListItemProps> = Array.from({ length: 300 }).map(
   (_item, index) => ({
     title: screenArray[index % screenArray.length],
     index,
-  }),
+  })
 );
 
 const ListItem = ({ title, index }: ListItemProps) => {
   const navigation =
     useNavigation<NavigationProp<ExamplesListStackParamList>>();
+
+  const left = () => (
+    <FastImage
+      style={styles.img}
+      source={{
+        uri: `https://unsplash.it/400/400?image=${index}`,
+        headers: { Authorization: 'someAuthToken' },
+        priority: FastImage.priority.normal,
+      }}
+      resizeMode={FastImage.resizeMode.contain}
+    />
+  );
+  const right = (props: IconProps) => (
+    <List.Icon {...props} icon="chevron-right" />
+  );
+
   return (
     <List.Item
       title={title}
-      titleStyle={{ color: '#7F7F7F' }}
+      titleStyle={styles.titleStyle}
       onPress={() => navigation.navigate(title)}
-      left={() => (
-        <FastImage
-          style={styles.img}
-          source={{
-            uri: `https://unsplash.it/400/400?image=${index}`,
-            headers: { Authorization: 'someAuthToken' },
-            priority: FastImage.priority.normal,
-          }}
-          resizeMode={FastImage.resizeMode.contain}
-        />
-      )}
-      right={props => <List.Icon {...props} icon="chevron-right" />}
+      left={left}
+      right={right}
     />
   );
 };
 
 const FlashListExample = () => {
+  const divider = () => <Divider />;
+
   return (
     <View style={styles.con}>
       <FlashList
@@ -63,7 +73,7 @@ const FlashListExample = () => {
             index={item.index}
           />
         )}
-        ItemSeparatorComponent={() => <Divider />}
+        ItemSeparatorComponent={divider}
         estimatedItemSize={78}
       />
     </View>
@@ -80,6 +90,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginLeft: 8,
   },
+  titleStyle: { color: '#7F7F7F' },
 });
 
 export default FlashListExample;

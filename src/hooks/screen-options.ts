@@ -2,7 +2,7 @@ import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { useTheme } from 'react-native-paper';
 
 // Define header styles based on theme
-export const usesScreenOptions = () => {
+export const useScreenOptions = () => {
   const theme = useTheme();
   return {
     headerShown: true,

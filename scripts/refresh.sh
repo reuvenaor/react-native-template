@@ -7,7 +7,7 @@ refresh_watchman() {
 
 # Clean and reinstall node modules
 refresh_modules() {
-    rm -rf node_modules/ && npm install
+    rm -rf node_modules/ && npm install --legacy-peer-deps
 }
 
 # Reset cache and start

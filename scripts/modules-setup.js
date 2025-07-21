@@ -2,29 +2,24 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 const readline = require('readline');
+const modules = require('../modules.json');
 
 // Define paths
 const PROJECT_ROOT = path.join(__dirname, '..');
 const MODULES_DIR = path.join(PROJECT_ROOT, 'modules');
-const NAVIGATION_FILE = path.join(
-  PROJECT_ROOT,
-  'src',
-  'tabs',
-  'examples-list-tab.tsx',
-);
 const PACKAGE_JSON = path.join(PROJECT_ROOT, 'package.json');
 
 // Module configurations
 const MODULES = {
-  'md-chat-ai-screen': {
+  [modules.screens.CHAT_AI_SCREEN]: {
     path: path.join(MODULES_DIR, 'chat-ai-screen'),
     dependencies: ['react-native-executorch@0.4.6'],
   },
-  'md-redux-screen': {
+  [modules.screens.REDUX_SCREEN]: {
     path: path.join(MODULES_DIR, 'redux-screen'),
     dependencies: [],
   },
-  'md-skia-accelerometer-screen': {
+  [modules.screens.SKIA_SCREEN]: {
     path: path.join(MODULES_DIR, 'skia-accelerometer-screen'),
     dependencies: [],
   },
@@ -204,7 +199,7 @@ async function disableModules(moduleNames) {
     if (MODULES[moduleName].dependencies.length > 0) {
       const prompt = createPrompt();
       const response = await prompt.ask(
-        `Do you want to uninstall dependencies for ${moduleName}? (y/N): `,
+        `Do you want to uninstall dependencies for ${moduleName}? (y/N): `
       );
       prompt.close();
 
@@ -287,7 +282,7 @@ async function main() {
   switch (choice) {
     case '1':
       const enableModule = await prompt.ask(
-        `Enter module name (${Object.keys(MODULES).join(', ')}): `,
+        `Enter module name (${Object.keys(MODULES).join(', ')}): `
       );
       if (MODULES[enableModule]) {
         await enableModules([enableModule]);
@@ -297,7 +292,7 @@ async function main() {
       break;
     case '2':
       const disableModule = await prompt.ask(
-        `Enter module name (${Object.keys(MODULES).join(', ')}): `,
+        `Enter module name (${Object.keys(MODULES).join(', ')}): `
       );
       if (MODULES[disableModule]) {
         await disableModules([disableModule]);
