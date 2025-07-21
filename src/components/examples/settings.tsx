@@ -12,7 +12,21 @@ import {
   Dialog,
   Portal,
   useTheme,
+  ListIconProps,
 } from 'react-native-paper';
+
+type IconProps = Omit<ListIconProps, 'icon'>;
+
+const renderSwitch = (value: boolean, onValueChange: (v: boolean) => void) => () => (
+  <Switch value={value} onValueChange={onValueChange} />
+);
+const renderChevronIcon = (props: IconProps) => <IconButton {...props} icon="chevron-right" onPress={() => { }} />;
+const renderThemeIcon = (props: IconProps) => <List.Icon {...props} icon="theme-light-dark" />;
+const renderBellIcon = (props: IconProps) => <List.Icon {...props} icon="bell" />;
+const renderChartBarIcon = (props: IconProps) => <List.Icon {...props} icon="chart-bar" />;
+const renderDeleteIcon = (props: IconProps) => <List.Icon {...props} icon="delete" />;
+const renderInfoIcon = (props: IconProps) => <List.Icon {...props} icon="information" />;
+const renderHelpIcon = (props: IconProps) => <List.Icon {...props} icon="help-circle" />;
 
 export default function Settings() {
   const theme = useTheme();
@@ -26,7 +40,7 @@ export default function Settings() {
       <Surface
         style={[
           styles.topContainer,
-          { backgroundColor: theme.colors.surfaceVariant }
+          { backgroundColor: theme.colors.surfaceVariant },
         ]}
         elevation={0}
       >
@@ -34,7 +48,7 @@ export default function Settings() {
           variant="labelLarge"
           style={[
             styles.headerTitle,
-            { color: theme.colors.onSurfaceVariant }
+            { color: theme.colors.onSurfaceVariant },
           ]}
         >
           App configuration example
@@ -47,8 +61,8 @@ export default function Settings() {
           <List.Item
             title="Dark Mode"
             description="Enable dark theme throughout the app"
-            left={props => <List.Icon {...props} icon="theme-light-dark" />}
-            right={props => <Switch value={darkMode} onValueChange={setDarkMode} />}
+            left={renderThemeIcon}
+            right={renderSwitch(darkMode, setDarkMode)}
           />
           <Divider />
 
@@ -56,8 +70,8 @@ export default function Settings() {
           <List.Item
             title="Push Notifications"
             description="Receive notifications for important updates"
-            left={props => <List.Icon {...props} icon="bell" />}
-            right={props => <Switch value={notifications} onValueChange={setNotifications} />}
+            left={renderBellIcon}
+            right={renderSwitch(notifications, setNotifications)}
           />
           <Divider />
 
@@ -65,14 +79,14 @@ export default function Settings() {
           <List.Item
             title="Data Collection"
             description="Allow anonymous usage data collection to improve the app"
-            left={props => <List.Icon {...props} icon="chart-bar" />}
-            right={props => <Switch value={dataCollection} onValueChange={setDataCollection} />}
+            left={renderChartBarIcon}
+            right={renderSwitch(dataCollection, setDataCollection)}
           />
           <List.Item
             title="Clear Chat History"
             description="Remove all previous conversations"
-            left={props => <List.Icon {...props} icon="delete" />}
-            right={props => <IconButton icon="chevron-right" onPress={() => { }} />}
+            left={renderDeleteIcon}
+            right={renderChevronIcon}
           />
           <Divider />
 
@@ -80,12 +94,12 @@ export default function Settings() {
           <List.Item
             title="App Version"
             description="1.0.0"
-            left={props => <List.Icon {...props} icon="information" />}
+            left={renderInfoIcon}
           />
           <List.Item
             title="About This App"
             description="Learn more about the application"
-            left={props => <List.Icon {...props} icon="help-circle" />}
+            left={renderHelpIcon}
             onPress={() => setShowAboutDialog(true)}
           />
         </List.Section>
@@ -99,7 +113,7 @@ export default function Settings() {
               <Avatar.Icon
                 size={60}
                 icon="brain"
-                style={{ backgroundColor: theme.colors.primary, marginBottom: 16 }}
+                style={[{ backgroundColor: theme.colors.primary }, styles.avatarIcon]}
                 color={theme.colors.onPrimary}
               />
               <Text variant="bodyMedium" style={styles.aboutText}>
@@ -141,5 +155,8 @@ const styles = StyleSheet.create({
   aboutText: {
     textAlign: 'center',
     lineHeight: 20,
+  },
+  avatarIcon: {
+    marginBottom: 16,
   },
 });
