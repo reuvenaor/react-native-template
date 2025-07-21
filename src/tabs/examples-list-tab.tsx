@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ExamplesListScreenName } from '../types/navigation';
-import { usesScreenOptions } from '../hooks/screen-options';
+import { useScreenOptions } from '../hooks/screen-options';
 import ExamplesListScreen from '../screens/examples-list-screen';
 import ReduxScreenOpt from '../screens/redux-screen-opt';
 import ChatScreenOpt from '../screens/chat-ai-screen-opt';
@@ -10,7 +10,7 @@ import SkiaScreenOpt from '../screens/skia-screen-opt';
 const ExamplesListStack = createNativeStackNavigator();
 
 function ExamplesListTab() {
-  const screenOptions = usesScreenOptions();
+  const screenOptions = useScreenOptions();
   return (
     <ExamplesListStack.Navigator screenOptions={screenOptions}>
       <ExamplesListStack.Screen
