@@ -1,0 +1,14 @@
+{
+  "screens": {
+    "REDUX_SCREEN": "md-redux-screen",
+    "CHAT_AI_SCREEN": "md-chat-ai-screen",
+    "SKIA_SCREEN": "md-skia-accelerometer-screen"
+  },
+  "components": {
+    "ERROR_BOUNDARY": "md-error-boundary",
+    "MD_KEYBOARD_AWARE_SCREEN": "md-keyboard-aware-screen",
+    "MD_LOGGER": "md-logger",
+    "MD_REDUX_STORE": "md-redux-store",
+    "MD_SAFE_AREA_VIEW": "md-safe-area-view"
+  }
+}
