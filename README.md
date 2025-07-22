@@ -2,7 +2,7 @@ A new [**React Native**](https://reactnative.dev) project, bootstrapped using [`
 
 [![expo](https://img.shields.io/badge/expo-53.0.8-blue)](https://expo.dev/)
 [![react](https://img.shields.io/badge/react-19.0.0-blue)](https://reactjs.org/)
-[![react-native](https://img.shields.io/badge/react--native-0.79.2-blue)](https://reactnative.dev/)
+[![react-native](https://img.shields.io/badge/react--native-0.79.5-blue)](https://reactnative.dev/)
 
 # React Native Template Expo Modules
 
@@ -27,7 +27,6 @@ Animation and UI:
 [![react-native-paper](https://img.shields.io/badge/react--native--paper-~5.14.5-blue)](https://callstack.github.io/react-native-paper/)
 [![react-native-reanimated](https://img.shields.io/badge/react--native--reanimated-~3.17.4-blue)](https://docs.swmansion.com/react-native-reanimated/)
 [![@shopify/react-native-skia](https://img.shields.io/badge/@shopify/react--native--skia-2.0.0--next.2-blue)](https://shopify.github.io/react-native-skia/)
-[![@react-native-vector-icons](https://img.shields.io/badge/@react--native--vector--icons/common-^11.0.0-blue)](https://github.com/oblador/react-native-vector-icons)
 
 Capabilities:
 
@@ -107,10 +106,10 @@ npm run modules:setup
 npm run modules:status
 
 # Enable specific modules
-npm run modules:enable chat-ai-screen
+npm run modules:enable md-chat-ai-screen
 
 # Disable specific modules
-npm run modules:disable chat-ai-screen
+npm run modules:disable md-chat-ai-screen
 ```
 
 Each module is implemented as a separate React Native library that can be linked/unlinked independently. When disabled, modules show placeholder screens with re-enabling instructions. This modular approach helps reduce bundle size and dependencies when features aren't needed.

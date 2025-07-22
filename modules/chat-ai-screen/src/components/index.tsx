@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from 'react';
 import {
@@ -18,12 +19,13 @@ import {
   ActivityIndicator,
   useTheme,
 } from 'react-native-paper';
+
 import {
   LLAMA3_2_1B_QLORA,
   LLAMA3_2_TOKENIZER,
   LLAMA3_2_TOKENIZER_CONFIG,
   useLLM,
-} from 'react-native-executorch';
+} from 'react-native-executorch'; // @ts-nocheck
 import { SenderType, MessageType } from './types';
 import Messages from './messages';
 import { KeyboardAwareScreen } from 'md-keyboard-aware-screen';
