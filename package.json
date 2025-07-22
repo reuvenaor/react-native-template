@@ -4,6 +4,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "install:legacy": "npm install --legacy-peer-deps",
     "android": "react-native run-android",
     "android:clean": "cd android && ./gradlew clean && cd ..",
     "android:devices": "./scripts/android-devices.sh",
@@ -18,6 +19,7 @@
     "format": "prettier --write .",
     "start": "react-native start",
     "test": "jest",
+    "typecheck": "tsc --noEmit",
     "refresh:watchman": "./scripts/refresh.sh watchman",
     "refresh:modules": "./scripts/refresh.sh modules",
     "refresh:start": "./scripts/refresh.sh start",
@@ -32,7 +34,9 @@
     "modules:disable": "node scripts/modules-setup.js --disable",
     "modules:enable-all": "node scripts/modules-setup.js --enable all",
     "modules:disable-all": "node scripts/modules-setup.js --disable all",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "version": "changeset version",
+    "release": "changeset publish"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.1.2",
@@ -69,6 +73,7 @@
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
     "@babel/runtime": "^7.25.0",
+    "@changesets/cli": "^2.29.5",
     "@expo/cli": "^0.24.15",
     "@expo/config-plugins": "^10.0.3",
     "@react-native-community/cli": "18.0.0",

@@ -15,7 +15,6 @@ const config = {
     resolveRequest: (context, moduleName, platform) => {
       // Only intercept our specific optional modules
       const moduleKeys = [...Object.values(modules.screens)];
-      
       if (moduleKeys.includes(moduleName)) {
         try {
           // Try default resolution first
@@ -28,7 +27,6 @@ const config = {
           };
         }
       }
-      
       // For all other modules, use default Metro resolution
       return context.resolveRequest(context, moduleName, platform);
     },
