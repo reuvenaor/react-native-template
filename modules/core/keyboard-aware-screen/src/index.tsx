@@ -13,10 +13,11 @@ export function KeyboardAwareScreen(props: KeyboardAwareScrollViewProps) {
       enableOnAndroid={true}
       viewIsInsideTabBar={true}
       pagingEnabled={true}
+      keyboardDismissMode="interactive"
+      scrollEnabled={props.scrollEnabled ?? true}
       extraScrollHeight={KEYBOARD_VERTICAL_OFFSET}
       style={[styles.container, props.style]}
       resetScrollToCoords={{ x: 0, y: 0 }}
-      scrollEnabled
       contentContainerStyle={[
         styles.contentContainer,
         props.contentContainerStyle,

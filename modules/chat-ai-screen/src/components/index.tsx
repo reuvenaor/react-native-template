@@ -40,7 +40,6 @@ export default function ChatAI() {
   const [chatHistory, setChatHistory] = useState<Array<MessageType>>([]);
   const [isTextInputFocused, setIsTextInputFocused] = useState(false);
   const [userInput, setUserInput] = useState('');
-
   // Reduced context window length from 6 to 4 to save memory
   const llama = useLLM({
     modelSource: LLAMA3_2_1B_QLORA,
@@ -147,6 +146,7 @@ export default function ChatAI() {
   const sendMessage = async () => {
     appendToMessageHistory(userInput.trim(), 'user');
     setUserInput('');
+    Keyboard.dismiss();
     try {
       await llama.generate([
         { role: 'system', content: SYSTEM_PROMPT },
@@ -166,109 +166,117 @@ export default function ChatAI() {
       </Text>
     </Surface>
   ) : (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <KeyboardAwareScreen>
-        <Surface
-          style={[
-            styles.topContainer,
-            { backgroundColor: theme.colors.surfaceVariant },
-          ]}
-          elevation={1}>
-          <Avatar.Icon
-            size={40}
-            icon="brain"
-            color={theme.colors.onPrimary}
+    <KeyboardAwareScreen
+      style={styles.keyboardAwareContainer}
+      scrollEnabled={false}
+      contentContainerStyle={styles.keyboardContentContainer}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.touchableContainer}>
+        <View style={styles.mainContainer}>
+          <Surface
             style={[
-              styles.topAvatar,
-              { backgroundColor: theme.colors.primary },
+              styles.topContainer,
+              { backgroundColor: theme.colors.surfaceVariant },
             ]}
-          />
-          <Text
-            style={[
-              styles.textModelName,
-              { color: theme.colors.onSurfaceVariant },
-            ]}
-            variant="titleMedium">
-            Llama 3.2 1B QLoRA
-          </Text>
-        </Surface>
-
-        {chatHistory.length ? (
-          <View style={styles.chatContainer}>
-            <Messages
-              chatHistory={chatHistory}
-              llmResponse={llama.response}
-              isGenerating={llama.isGenerating}
-            />
-          </View>
-        ) : (
-          <Surface style={styles.helloMessageContainer} elevation={0}>
+            elevation={1}>
             <Avatar.Icon
-              size={80}
+              size={40}
               icon="brain"
               color={theme.colors.onPrimary}
               style={[
-                styles.helloAvatar,
+                styles.topAvatar,
                 { backgroundColor: theme.colors.primary },
               ]}
             />
             <Text
-              style={[styles.helloTitle, { color: theme.colors.onSurface }]}
-              variant="headlineMedium">
-              Hello! 👋
-            </Text>
-            <Text
-              style={[styles.helloSubtitle, { color: theme.colors.onSurface }]}
-              variant="bodyLarge">
-              What can I help you with?
+              style={[
+                styles.textModelName,
+                { color: theme.colors.onSurfaceVariant },
+              ]}
+              variant="titleMedium">
+              Llama 3.2 1B QLoRA
             </Text>
           </Surface>
-        )}
 
-        <Surface style={styles.bottomContainer} elevation={2}>
-          <TextInput
-            mode="outlined"
-            multiline
-            scrollEnabled={false}
-            placeholder="Type your message here..."
-            placeholderTextColor="#9E9E9E"
-            onFocus={() => setIsTextInputFocused(true)}
-            onBlur={() => setIsTextInputFocused(false)}
-            style={styles.textInput}
-            outlineColor={
-              isTextInputFocused
-                ? theme.colors.primary
-                : theme.colors.primaryContainer
-            }
-            activeOutlineColor={theme.colors.primary}
-            onChangeText={(text: string) => setUserInput(text)}
-            value={userInput}
-            right={
-              userInput ? (
-                <TextInput.Icon
-                  icon="send"
-                  color={theme.colors.primary}
-                  disabled={llama.isGenerating}
-                  onPress={async () =>
-                    !llama.isGenerating && (await sendMessage())
-                  }
+          <View style={styles.contentContainer}>
+            {chatHistory.length ? (
+              <View style={styles.chatContainer}>
+                <Messages
+                  chatHistory={chatHistory}
+                  llmResponse={llama.response}
+                  isGenerating={llama.isGenerating}
                 />
-              ) : undefined
-            }
-          />
+              </View>
+            ) : (
+              <Surface style={styles.helloMessageContainer} elevation={0}>
+                <Avatar.Icon
+                  size={80}
+                  icon="brain"
+                  color={theme.colors.onPrimary}
+                  style={[
+                    styles.helloAvatar,
+                    { backgroundColor: theme.colors.primary },
+                  ]}
+                />
+                <Text
+                  style={[styles.helloTitle, { color: theme.colors.onSurface }]}
+                  variant="headlineMedium">
+                  Hello! 👋
+                </Text>
+                <Text
+                  style={[styles.helloSubtitle, { color: theme.colors.onSurface }]}
+                  variant="bodyLarge">
+                  What can I help you with?
+                </Text>
+              </Surface>
+            )}
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
 
-          {llama.isGenerating && (
-            <IconButton
-              icon="stop-circle"
-              size={24}
-              iconColor={theme.colors.primary}
-              style={styles.stopButton}
-              onPress={llama.interrupt}
-            />
-          )}
-        </Surface>
-      </KeyboardAwareScreen>
-    </TouchableWithoutFeedback>
+      <Surface style={[styles.bottomContainer, { backgroundColor: theme.colors.surface }]} elevation={2}>
+        <TextInput
+          mode="outlined"
+          multiline
+          scrollEnabled={false}
+          placeholder="Type your message here..."
+          placeholderTextColor="#9E9E9E"
+          onFocus={() => setIsTextInputFocused(true)}
+          onBlur={() => setIsTextInputFocused(false)}
+          style={[styles.textInput, { backgroundColor: theme.colors.surface }]}
+          outlineColor={
+            isTextInputFocused
+              ? theme.colors.primary
+              : theme.colors.primaryContainer
+          }
+          activeOutlineColor={theme.colors.primary}
+          onChangeText={(text: string) => setUserInput(text)}
+          value={userInput}
+          right={
+            userInput ? (
+              <TextInput.Icon
+                icon="send"
+                color={theme.colors.primary}
+                disabled={llama.isGenerating}
+                onPress={async () =>
+                  !llama.isGenerating && (await sendMessage())
+                }
+              />
+            ) : undefined
+          }
+        />
+
+        {llama.isGenerating && (
+          <IconButton
+            icon="stop-circle"
+            size={32}
+            iconColor={theme.colors.primary}
+            style={styles.stopButton}
+            onPress={llama.interrupt}
+          />
+        )}
+      </Surface>
+    </KeyboardAwareScreen>
   );
 }
 
@@ -283,9 +291,17 @@ const styles = StyleSheet.create({
     marginTop: 16,
     fontSize: 16,
   },
-  scrollViewContent: {
-    flexGrow: 1,
-    justifyContent: 'space-between',
+  keyboardAwareContainer: {
+    flex: 1,
+  },
+  keyboardContentContainer: {
+    flex: 1, // Use flex: 1 instead of flexGrow: 1 to prevent expansion
+  },
+  touchableContainer: {
+    flex: 1,
+  },
+  mainContainer: {
+    flex: 1,
   },
   topContainer: {
     height: 68,
@@ -297,8 +313,13 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
   },
+  contentContainer: {
+    flex: 1,
+    width: '100%',
+    paddingBottom: 80, // Exact space for the absolute input (minHeight: 80)
+  },
   chatContainer: {
-    flex: 10,
+    flex: 1,
     width: '100%',
     paddingHorizontal: 8,
   },
@@ -307,7 +328,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   helloMessageContainer: {
-    flex: 10,
+    flex: 1,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
@@ -317,7 +338,7 @@ const styles = StyleSheet.create({
     minHeight: 80,
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 12,
@@ -328,11 +349,14 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: 1000,
+    elevation: 5,
   },
   textInput: {
     flex: 1,
+    flexGrow: 1,
     maxHeight: 120,
-    backgroundColor: 'white',
+    marginBottom: 0,
+    paddingBottom: 0,
   },
   stopButton: {
     marginLeft: 8,
