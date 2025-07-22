@@ -166,7 +166,11 @@ export default function ChatAI() {
       </Text>
     </Surface>
   ) : (
-    <KeyboardAwareScreen style={styles.keyboardAwareContainer} scrollEnabled={false}>
+    <KeyboardAwareScreen
+      style={styles.keyboardAwareContainer}
+      scrollEnabled={false}
+      contentContainerStyle={styles.keyboardContentContainer}
+    >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.touchableContainer}>
         <View style={styles.mainContainer}>
           <Surface
@@ -265,7 +269,7 @@ export default function ChatAI() {
         {llama.isGenerating && (
           <IconButton
             icon="stop-circle"
-            size={24}
+            size={32}
             iconColor={theme.colors.primary}
             style={styles.stopButton}
             onPress={llama.interrupt}
@@ -289,6 +293,9 @@ const styles = StyleSheet.create({
   },
   keyboardAwareContainer: {
     flex: 1,
+  },
+  keyboardContentContainer: {
+    flex: 1, // Use flex: 1 instead of flexGrow: 1 to prevent expansion
   },
   touchableContainer: {
     flex: 1,
