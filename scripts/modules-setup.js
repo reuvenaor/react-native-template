@@ -13,7 +13,7 @@ const PACKAGE_JSON = path.join(PROJECT_ROOT, 'package.json');
 const MODULES = {
   [modules.screens.CHAT_AI_SCREEN]: {
     path: path.join(MODULES_DIR, 'chat-ai-screen'),
-    dependencies: ['react-native-executorch@0.4.6'],
+    dependencies: ['react-native-executorch@0.5.15'],
   },
   [modules.screens.REDUX_SCREEN]: {
     path: path.join(MODULES_DIR, 'redux-screen'),

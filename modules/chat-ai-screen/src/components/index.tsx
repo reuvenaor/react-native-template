@@ -22,8 +22,6 @@ import {
 
 import {
   LLAMA3_2_1B_QLORA,
-  LLAMA3_2_TOKENIZER,
-  LLAMA3_2_TOKENIZER_CONFIG,
   useLLM,
 } from 'react-native-executorch'; // @ts-nocheck
 import { SenderType, MessageType } from './types';
@@ -42,9 +40,7 @@ export default function ChatAI() {
   const [userInput, setUserInput] = useState('');
   // Reduced context window length from 6 to 4 to save memory
   const llama = useLLM({
-    modelSource: LLAMA3_2_1B_QLORA,
-    tokenizerSource: LLAMA3_2_TOKENIZER,
-    tokenizerConfigSource: LLAMA3_2_TOKENIZER_CONFIG,
+    model: LLAMA3_2_1B_QLORA,
   });
 
   // Effect to handle response from LLM
