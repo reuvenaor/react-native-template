@@ -35,8 +35,8 @@ const config = {
 
 const defaultConfig = getDefaultConfig(__dirname);
 
-// Fix for React Native 0.79.5 runtime errors - disable package exports
-defaultConfig.resolver.unstable_enablePackageExports = false;
+// Package exports are enabled by default in RN 0.81.5 / Metro 0.82+
+// Removed workaround for RN 0.79.5 compatibility
 
 defaultConfig.resolver.assetExts.push('pte');
 defaultConfig.resolver.assetExts.push('bin');

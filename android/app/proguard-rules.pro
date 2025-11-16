@@ -60,3 +60,7 @@
 -dontwarn com.sun.xml.internal.**
 -dontwarn pl.edu.icm.jlargearrays.**
 -keep class pl.edu.icm.jlargearrays.** { *; }
+
+# ExecuTorch - Keep all classes used via JNI
+-keep class org.pytorch.executorch.** { *; }
+-keepclassmembers class org.pytorch.executorch.** { *; }

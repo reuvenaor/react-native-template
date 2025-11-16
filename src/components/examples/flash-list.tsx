@@ -74,7 +74,6 @@ const FlashListExample = () => {
           />
         )}
         ItemSeparatorComponent={divider}
-        estimatedItemSize={78}
       />
     </View>
   );
