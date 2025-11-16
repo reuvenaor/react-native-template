@@ -29,6 +29,12 @@
       },
       "package": "com.anonymous.exapp"
     },
+    "androidNavigationBar": {
+      "enforceContrast": true
+    },
+    "androidStatusBar": {
+      "translucent": false
+    },
     "web": {
       "favicon": "./assets/favicon.png"
     }
